@@ -1,0 +1,420 @@
+<html lang="pt-br"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <title>WM IMPORTS | Produtos Originais | Garantia Total</title>
+    <meta name="description" content="A WM IMPORTS oferece os melhores produtos originais de saúde e emagrecimento com garantia total. Atendimento 24 horas no Brás, SP. Qualidade e procedência garantida.">
+    <meta name="keywords" content="WM Imports, produtos originais, garantia total, emagrecimento Brás, suplementos 24 horas, produtos naturais SP, saúde e bem-estar Brás">
+    <meta name="author" content="WM Imports">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://wmimports.com.py/">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://wmimports.com.py/">
+    <meta property="og:title" content="WM IMPORTS | Produtos Originais | Garantia Total">
+    <meta property="og:description" content="Especialista em saúde e emagrecimento. Atendimento 24h no Brás com garantia total de originalidade.">
+    <meta property="og:image" content="https://wmimports.com.py/wmimports.png">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "HealthAndBeautyBusiness",
+      "name": "WM IMPORTS",
+      "image": "https://wmimports.com.py/wmimports.png",
+      "description": "Loja especializada em produtos originais de saúde e emagrecimento com garantia total. Atendimento 24 horas.",
+      "url": "https://wmimports.com.py/",
+      "telephone": "+5511971280942",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Rua Tiers, 184",
+        "addressLocality": "Brás",
+        "addressRegion": "SP",
+        "postalCode": "03031-060",
+        "addressCountry": "BR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -23.536551,
+        "longitude": -46.619478
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
+          ],
+          "opens": "00:00",
+          "closes": "23:59"
+        }
+      ]
+    }
+    </script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer="" src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="icon" href="fav.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body x-data="wmStore()" class="font-sans text-slate-900 pb-20 lg:pb-10">
+    <button @click="view = 'cart'; window.scrollTo({ top: 0, behavior: 'smooth' })" class="fab-cart w-16 h-16 bg-[#c19101] text-white rounded-full flex items-center justify-center transition-transform active:scale-95 animate__animated animate__bounceIn">
+        <i class="fas fa-shopping-cart text-xl"></i>
+        <span x-show="cart.length &gt; 0" class="absolute top-0 right-0 bg-red-600 text-white text-[11px] font-black w-6 h-6 rounded-full flex items-center justify-center border-2 border-white" x-text="cart.length" style="display: none;">0</span>
+    </button>
+
+    <div class="animate-urgent text-white text-[10px] font-black py-1.5 text-center uppercase sticky top-0 z-[100]">
+        🔥 Ofertas válidas por tempo limitado 🔥
+    </div>
+
+    <div class="flex flex-col min-h-screen">
+        <nav class="sticky top-[28px] z-[90] bg-[#010101] lg:justify-center border-b border-white/10 flex items-center px-4 py-3 space-x-3 overflow-x-auto no-scrollbar">
+            <div class="flex-shrink-0 font-black italic text-lg text-white mr-4"><img class="w-[9rem] lg:hidden" src="wmimports.png"></div>
+            
+            <button @click="setActiveCategory('Todos')" class="whitespace-nowrap px-4 py-2 rounded-full text-[10px] font-black uppercase border transition-colors bg-[#c19101] border-[#c19101] text-black" :class="isSelectedCategory('Todos') ? 'bg-[#c19101] border-[#c19101] text-black' : 'bg-white/10 border-white/10 text-white'">
+                TUDO
+            </button>
+
+            <template x-for="cat in categories" :key="'nav-' + cat">
+                <button
+                    @click="setActiveCategory(cat)"
+                    class="whitespace-nowrap px-4 py-2 rounded-full text-[10px] font-black uppercase border transition-colors"
+                    :class="isSelectedCategory(cat) ? 'bg-[#c19101] border-[#c19101] text-black' : 'bg-white/10 border-white/10 text-white'"
+                    x-text="cat"
+                ></button>
+            </template>
+        </nav>
+
+        <main class="flex-1 w-full">
+            <div x-show="view === 'home'" class="animate__animated animate__fadeIn">
+                <!-- Banner -->
+                <div class="relative w-full h-[220px] lg:h-[450px] overflow-hidden bg-[#010101]" x-data="{ active: 0, count: 1 }" x-init="if(count &gt; 0) setInterval(() =&gt; active = (active + 1) % count, 5000)">
+                                            <div x-show="active === 0" class="absolute inset-0 bg-[#010101]">
+                            <img src="img/1773689262_69b859ae53f27.png" class="w-full h-full object-contain">
+                        </div>
+                                    </div>
+
+                <!-- SEÇÕES POR CATEGORIA -->
+                <div class="max-w-6xl mx-auto px-5 py-8">
+                    <!-- Loop pelas categorias -->
+                    <template x-for="cat in visibleCategories" :key="cat">
+                        <!-- Só mostra a seção se a categoria for a ativa ou se "Todos" estiver selecionado -->
+                        <section class="mb-12">
+                            <div class="flex items-center justify-between mb-6 border-b-2 border-[#c19101]/20 pb-2">
+                                <h3 class="text-2xl font-black uppercase italic text-slate-800" x-text="cat"></h3> 
+                            </div>
+
+                            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                                <template x-for="p in getProductsByCategory(cat)" :key="p.sku">
+                                    <div class="bg-white rounded-2xl p-3 border shadow-sm active:scale-95 transition-transform cursor-pointer flex flex-col h-full" :class="(p.unavailable || false) ? 'opacity-50' : ''" @click="!(p.unavailable || false) &amp;&amp; openProduct(p)">
+                                        <div class="bg-slate-50 rounded-xl aspect-square flex items-center justify-center p-2 mb-2 overflow-hidden" :class="(p.unavailable || false) ? 'grayscale' : ''">
+                                            <img :src="p.image" :alt="p.name" class="max-h-full object-contain">
+                                        </div>
+                                        <div class="flex flex-col flex-1 items-center justify-center py-2">
+                                            <h4 class="text-sm lg:text-base text-center opacity-80 uppercase font-bold mb-2 line-clamp-2" x-text="p.name"></h4>
+                                            <div class="flex flex-col items-center">
+                                                <p class="italic text-center text-[10px] lg:text-xs line-through opacity-50" x-text="'de ' + formatPrice(p.price * 1.2)"></p>
+                                                <p class="text-lg lg:text-xl text-center font-black" :class="(p.unavailable || false) ? 'text-slate-400' : 'text-emerald-600'" x-text="formatPrice(p.price)"></p>
+                                            </div>
+                                        </div>
+                                        <button class="w-full py-2 mt-2 rounded-lg text-sm font-black uppercase" :class="(p.unavailable || false) ? 'bg-slate-300 text-slate-500 cursor-not-allowed' : 'bg-[#c19101] text-white'" :disabled="p.unavailable || false" @click.stop="!(p.unavailable || false) &amp;&amp; openProduct(p)" x-text="(p.unavailable || false) ? 'INDISPONÍVEL' : 'VER PRODUTO'">
+                                        </button>
+                                    </div>
+                                </template>
+                            </div>
+                        </section> 
+                    </template>
+                </div>
+ 
+                <div class="p-5 max-w-6xl mx-auto relative group" x-show="showFeedbacks">
+                    <div class="flex items-center justify-between mb-6 border-b-2 border-[#c19101]/20 pb-2">
+                        <h3 class="text-2xl font-black uppercase italic text-slate-800">FEEDBACKS</h3>
+                        <span class="bg-[#c19101] text-white text-[10px] font-bold px-3 py-1 rounded-full lg:hidden">Arraste para o lado</span>
+                    </div>
+                    
+                    <!-- Botões de Navegação (Desktop) -->
+                    <div class="hidden lg:flex">
+                        <button @click="$refs.feedbackScroll.scrollBy({ left: -400, behavior: 'smooth' })" class="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-black/50 text-white w-12 h-12 rounded-full hover:bg-[#c19101] transition-colors shadow-xl items-center justify-center">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button @click="$refs.feedbackScroll.scrollBy({ left: 400, behavior: 'smooth' })" class="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-black/50 text-white w-12 h-12 rounded-full hover:bg-[#c19101] transition-colors shadow-xl items-center justify-center">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+
+                    <!-- Container com Scroll -->
+                    <div x-ref="feedbackScroll" class="flex space-x-4 overflow-x-auto no-scrollbar pb-5 scroll-smooth">
+                                                <div class="flex-none h-96 rounded-2xl overflow-hidden border border-slate-200 shadow-md">
+                            <img src="prints/1773699971_69b8838390aaa.jpg" class="h-full w-auto object-contain select-none pointer-events-none">
+                        </div>
+                                                <div class="flex-none h-96 rounded-2xl overflow-hidden border border-slate-200 shadow-md">
+                            <img src="prints/1773699994_69b8839a461f3.jpg" class="h-full w-auto object-contain select-none pointer-events-none">
+                        </div>
+                                                <div class="flex-none h-96 rounded-2xl overflow-hidden border border-slate-200 shadow-md">
+                            <img src="prints/1773700010_69b883aa7fc76.jpg" class="h-full w-auto object-contain select-none pointer-events-none">
+                        </div>
+                                                <div class="flex-none h-96 rounded-2xl overflow-hidden border border-slate-200 shadow-md">
+                            <img src="prints/1773700046_69b883ceb2267.jpg" class="h-full w-auto object-contain select-none pointer-events-none">
+                        </div>
+                                                <div class="flex-none h-96 rounded-2xl overflow-hidden border border-slate-200 shadow-md">
+                            <img src="prints/1773700090_69b883fa68da8.jpg" class="h-full w-auto object-contain select-none pointer-events-none">
+                        </div>
+                                                <div class="flex-none h-96 rounded-2xl overflow-hidden border border-slate-200 shadow-md">
+                            <img src="prints/1773864102_69bb04a641b02.jpg" class="h-full w-auto object-contain select-none pointer-events-none">
+                        </div>
+                                                <div class="flex-none h-96 rounded-2xl overflow-hidden border border-slate-200 shadow-md">
+                            <img src="prints/1773864107_69bb04ab370c7.jpg" class="h-full w-auto object-contain select-none pointer-events-none">
+                        </div>
+                                                <div class="flex-none h-96 rounded-2xl overflow-hidden border border-slate-200 shadow-md">
+                            <img src="prints/1773864113_69bb04b16c77a.jpg" class="h-full w-auto object-contain select-none pointer-events-none">
+                        </div>
+                                                <div class="flex-none h-96 rounded-2xl overflow-hidden border border-slate-200 shadow-md">
+                            <img src="prints/1773864118_69bb04b6a3efc.jpg" class="h-full w-auto object-contain select-none pointer-events-none">
+                        </div>
+                                                <div class="flex-none h-96 rounded-2xl overflow-hidden border border-slate-200 shadow-md">
+                            <img src="prints/photo_2026-03-12_12-22-11.jpg" class="h-full w-auto object-contain select-none pointer-events-none">
+                        </div>
+                                                <div class="flex-none h-96 rounded-2xl overflow-hidden border border-slate-200 shadow-md">
+                            <img src="prints/photo_2026-03-12_12-22-12.jpg" class="h-full w-auto object-contain select-none pointer-events-none">
+                        </div>
+                                                <div class="flex-none h-96 rounded-2xl overflow-hidden border border-slate-200 shadow-md">
+                            <img src="prints/photo_2026-03-12_12-22-13.jpg" class="h-full w-auto object-contain select-none pointer-events-none">
+                        </div>
+                                                <div class="flex-none h-96 rounded-2xl overflow-hidden border border-slate-200 shadow-md">
+                            <img src="prints/1773700140_69b8842ccdb07.jpeg" class="h-full w-auto object-contain select-none pointer-events-none">
+                        </div>
+                                                <div class="flex-none h-96 rounded-2xl overflow-hidden border border-slate-200 shadow-md">
+                            <img src="prints/1773700146_69b8843250837.jpeg" class="h-full w-auto object-contain select-none pointer-events-none">
+                        </div>
+                                                <div class="flex-none h-96 rounded-2xl overflow-hidden border border-slate-200 shadow-md">
+                            <img src="prints/1773700151_69b8843779bd7.jpeg" class="h-full w-auto object-contain select-none pointer-events-none">
+                        </div>
+                                                <div class="flex-none h-96 rounded-2xl overflow-hidden border border-slate-200 shadow-md">
+                            <img src="prints/1773700157_69b8843d5fdbd.jpeg" class="h-full w-auto object-contain select-none pointer-events-none">
+                        </div>
+                                                <div class="flex-none h-96 rounded-2xl overflow-hidden border border-slate-200 shadow-md">
+                            <img src="prints/1773700171_69b8844bab6cb.jpeg" class="h-full w-auto object-contain select-none pointer-events-none">
+                        </div>
+                                                <div class="flex-none h-96 rounded-2xl overflow-hidden border border-slate-200 shadow-md">
+                            <img src="prints/1773700177_69b88451e7de8.jpeg" class="h-full w-auto object-contain select-none pointer-events-none">
+                        </div>
+                                                <div class="flex-none h-96 rounded-2xl overflow-hidden border border-slate-200 shadow-md">
+                            <img src="prints/1773700327_69b884e757a15.jpeg" class="h-full w-auto object-contain select-none pointer-events-none">
+                        </div>
+                                            </div>
+                </div>
+            </div>
+            <div x-show="view === 'cart'" class="p-5 animate__animated animate__fadeInUp" style="display: none;">
+                <h2 class="text-2xl font-black italic uppercase mb-6">Seu Carrinho</h2>
+                <template x-if="cart.length &gt; 0">
+                    <div class="space-y-3 max-w-2xl mx-auto">
+                        <template x-for="(item, index) in cart" :key="index">
+                            <div class="flex items-center bg-white p-4 rounded-2xl border">
+                                <img :src="item.image" class="w-12 h-12 object-contain">
+                                <div class="ml-4 flex-1">
+                                    <p class="font-black uppercase truncate" x-text="item.name"></p>
+                                    <p class="text-emerald-600 font-black" x-text="formatPrice(item.price)"></p>
+                                </div>
+                                <button @click="removeFromCart(index)" class="text-red-500 px-2">✕</button>
+                            </div>
+                        </template>
+                        <div class="bg-app-dark text-white p-6 rounded-3xl mt-10">
+                            <div class="flex justify-between items-center mb-6">
+                                <span class="text-xs font-black uppercase opacity-50">Total</span>
+                                <span class="text-2xl text-emerald-400 font-black" x-text="formatPrice(cartTotal)"></span>
+                            </div>
+                            <div class="grid grid-cols-1 gap-3">
+                                <button @click="checkoutWhatsApp()" class="w-full bg-[#25D366] text-white py-4 rounded-xl font-black uppercase">Comprar via WhatsApp</button>
+                                <button @click="view = 'home'" class="w-full bg-[#333333] border-2 border-white/20 text-white py-4 rounded-xl font-black uppercase hover:bg-white/5">Adicionar mais itens</button>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+                <template x-if="cart.length === 0">
+                    <div class="text-center py-20">
+                        <p class="text-slate-400 font-black text-[10px] uppercase">Cesta vazia</p>
+                        <button @click="view = 'home'" class="mt-4 bg-[#c19101] px-8 py-3 rounded-full font-black text-[10px] uppercase">Ver Catálogo</button>
+                    </div>
+                </template><div class="text-center py-20">
+                        <p class="text-slate-400 font-black text-[10px] uppercase">Cesta vazia</p>
+                        <button @click="view = 'home'" class="mt-4 bg-[#c19101] px-8 py-3 rounded-full font-black text-[10px] uppercase">Ver Catálogo</button>
+                    </div>
+            </div>
+        </main>
+    </div>
+    <nav class="tab-bar fixed bottom-0 left-0 right-0 z-[200] lg:hidden px-6 py-3 border-t border-white/5 flex justify-around items-center">
+        <button @click="view = 'home'; activeCategory = 'Todos'" class="flex flex-col items-center text-[#c19101]" :class="view === 'home' ? 'text-[#c19101]' : 'text-white/40'">
+            <div class="w-10 h-10 bg-[#c19101] rounded-full flex items-center justify-center -mt-8 border-4 border-[#010101] text-black font-black"><i class="fas fa-house"></i></div>
+            <span class="text-[1rem] font-black italic uppercase text-[#c19101] tracking-tighter">Home</span>
+
+        </button>
+        <button @click="window.open('https://chat.whatsapp.com/IKip1Wvw0DyHqDdPRHsT1G')" class="flex flex-col items-center">
+            <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center -mt-8 border-4 border-[#010101] text-black font-black"><i class="fab fa-whatsapp"></i></div>
+            <span class="text-[1rem] font-black italic uppercase text-green-500 tracking-tighter">Grupo VIP</span>
+        </button>
+    </nav>
+    <template x-if="activeProduct">
+        <div @click="activeProduct = null" class="fixed inset-0 z-[500] flex items-end lg:items-center justify-center bg-black/90 p-0 lg:p-4" x-cloak="">
+            <div @click.stop="" class="bg-white w-full lg:max-w-2xl rounded-t-[2.5rem] lg:rounded-[2.5rem] lg:rounded-tr-[0] lg:rounded-br-[0] p-6 animate__animated animate__slideInUp max-h-[90vh] overflow-y-auto scrollbar-thin scrollbar-thumb-slate-300 scrollbar-track-transparent hover:scrollbar-thumb-slate-400">
+                <div class="flex justify-between items-start mb-4">
+                    <span class="bg-emerald-100 text-emerald-700 px-2 py-1 rounded text-[8px] font-black uppercase" x-text="activeProduct.sku"></span>
+                    <button @click="activeProduct = null" class="text-slate-300 hover:text-black text-2xl">✕ FECHAR</button>
+                </div>
+                <img :src="activeProduct.image" class="w-[90%] max-w-[800px] h-auto max-h-[50vh] mx-auto object-contain mb-6">
+                <h3 class="text-2xl font-black italic uppercase mb-2" x-text="activeProduct.name"></h3>
+                <p class="text-slate-500 font-bold leading-relaxed mb-6 whitespace-pre-line" x-text="activeProduct.description"></p>
+
+                <div class="flex items-center justify-between gap-4 border-t pt-6">
+                    <div class="flex flex-col">
+                        <p class="italic text-sm line-through opacity-50 mb-[-4px]" x-text="'de ' + formatPrice((1.05 + (Math.abs(activeProduct.price.toString().split('').reduce((a,b)=&gt;((a&lt;&lt;5)-a)+b.charCodeAt(0),0)) % 501) / 1000) * activeProduct.price)">
+                        </p>
+                        <div class="flex items-baseline gap-1">
+                            <p class="text-[2rem] font-black leading-tight" :class="(activeProduct.unavailable || false) ? 'text-slate-400' : 'text-emerald-600'" x-text="formatPrice(activeProduct.price)">
+                            </p>
+                        </div>
+                    </div>
+                    <button @click="!(activeProduct.unavailable || false) &amp;&amp; addToCart(activeProduct); activeProduct = null" class="flex-1 py-4 rounded-xl font-black text-[24px] italic uppercase" :class="(activeProduct.unavailable || false) ? 'bg-slate-300 text-slate-500 cursor-not-allowed' : 'bg-[#c19101] text-white'" :disabled="activeProduct.unavailable || false" x-text="(activeProduct.unavailable || false) ? 'INDISPONÍVEL' : 'Comprar'">
+                    </button>
+                </div>
+                
+                <button @click="activeProduct = null" class="md:hidden mb-4 w-full py-4 rounded-xl font-black text-[18px] mt-[3rem] italic uppercase bg-white text-[#c19101] border-2 border-[#c19101]">Voltar para a lista</button>
+                
+                <div class="mt-6 pt-6 border-t border-slate-100">
+                    <p class="text-sm font-black text-slate-600 mb-4 text-center uppercase">Compartilhar Produto</p>
+                    <div class="flex justify-center gap-3">
+                        <button @click="shareWhatsApp()" class="bg-[#25D366] text-white w-12 h-12 rounded-full flex items-center justify-center hover:scale-110 transition-transform">
+                            <i class="fab fa-whatsapp text-xl"></i>
+                        </button>
+                        <button @click="shareFacebook()" class="bg-[#1877F2] text-white w-12 h-12 rounded-full flex items-center justify-center hover:scale-110 transition-transform">
+                            <i class="fab fa-facebook-f text-xl"></i>
+                        </button>
+                        <button @click="copyLink()" class="bg-slate-600 text-white w-12 h-12 rounded-full flex items-center justify-center hover:scale-110 transition-transform">
+                            <i class="fas fa-link text-xl"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <script>
+        function wmStore() {
+            return {
+                view: 'home',
+                activeCategory: 'Todos',
+                activeProduct: null,
+                cart: [],
+                products: [{"sku":"KITBLEND50","category":"TIRZEPATIDA","priority":101,"name":"TIRZE KIT BLEND 5.0 - 5 VIAL","price":1490,"description":"Esse KIT cont\u00e9m:\r\n\r\n1 Ampola TG 15\r\n1 Ampola Lipoland 15\r\n1 Ampola Lipoless 15\r\n1 Ampola Gluconex 15\r\n1 Ampola Tirzedral 15","image":"products\/KITBLEND50.png"},{"sku":"TG15","category":"TIRZEPATIDA","priority":100,"name":"TIRZE TG 15MG - 4 VIAL","price":1100,"description":"- 4 AMPOLAS DE 15MG\r\n- CADA AMPOLA 0,5ML\r\n- TOTAL 60MG\r\n- LABORAT\u00d3RIO - INDUFAR","info":null,"image":"products\/TG15.png"},{"sku":"LIPOLESS15","category":"TIRZEPATIDA","priority":99,"name":"TIRZE LIPOLESS 15MG - 4 VIAL","price":1100,"description":"- 4 AMPOLAS DE 15MG\r\n- CADA AMPOLA 0,5ML\r\n- TOTAL 60MG\r\n- LABORAT\u00d3RIO - ETICOS","image":"products\/LIPOLESS15.png"},{"sku":"GLUCONEX","category":"TIRZEPATIDA","priority":97,"name":"TIRZE GLUCONEX 15MG - 4 VIAL","price":1200,"description":"- 4 AMPOLAS DE 15MG\r\n- CADA AMPOLA 1ML\r\n- TOTAL 60MG\r\n- LABORAT\u00d3RIO - LASCA","info":null,"image":"products\/GLUCONEX.png"},{"sku":"LIPOLAND15","category":"TIRZEPATIDA","priority":96,"name":"TIRZE LIPOLAND 15MG - 4 VIAL","price":1100,"description":"- 4 AMPOLAS DE 15MG\r\n- CADA AMPOLA 0,5ML\r\n- TOTAL 60MG\r\n- LABORAT\u00d3RIO - LANDERLAN","info":null,"image":"products\/LIPOLAND15.png"},{"sku":"TIRZEC15","category":"TIRZEPATIDA","priority":95,"name":"TIRZE TIRZEC 15MG - 1 VIAL","price":1000,"description":"- 1 AMPOLA DE 60MG\r\n- 15MG A CADA 0,5ML\r\n- AMPOLA 2ML - TOTAL 60MG\r\n- LABORAT\u00d3RIO - QUIMFA","image":"products\/TIRZEC15.png"},{"sku":"MOUNLILLY","category":"TIRZEPATIDA","priority":95,"name":"CANETA MOUNJARO KwikPen 15MG - LILLY","price":2700,"description":"- 1 CANETA DE 60MG\r\n- 24 DOSES DE 2,5MG\r\n- CANETA 2.4ML - TOTAL 60MG\r\n- LABORAT\u00d3RIO - ELI LILLY","image":"products\/MOUNLILLY.png"},{"sku":"LIPOLESSMD","category":"TIRZEPATIDA","priority":94,"name":"TIRZE LIPOLESS\u00ae MD 15 - 1 VIAL","price":1000,"description":"- 1 AMPOLA DE 60MG\r\n- 15MG A CADA 0,6ML\r\n- AMPOLA 2,4ML - TOTAL 60MG\r\n- LABORAT\u00d3RIO - ETICOS","info":null,"image":"products\/LIPOLESSMD.png"},{"sku":"LIPOLANDMD","category":"TIRZEPATIDA","priority":93,"name":"TIRZE LIPOLAND MD 15 - 1 VIAL","price":1050,"description":"- 1 AMPOLA DE 60MG\r\n- 15MG A CADA 0,5ML\r\n- AMPOLA 2ML - TOTAL 60MG\r\n- LABORAT\u00d3RIO - LANDERLAN","info":null,"image":"products\/LIPOLANDMD.png"},{"sku":"KITBLEND","category":"TIRZEPATIDA","priority":92,"name":"TIRZE KIT BLEND 4.0 - 4 VIAL","price":1200,"description":"Esse KIT cont\u00e9m:\r\n\r\n1 Ampola TG 15\r\n1 Ampola Lipoland 15\r\n1 Ampola Lipoless 15\r\n1 Ampola Gluconex 15","image":"products\/KITBLEND.png"},{"sku":"TIRZECPEN","category":"TIRZEPATIDA","priority":91,"name":"TIRZE TIRZEC PEN 15MG - 1 PEN","price":1350,"description":"- 1 CANETA DE 60MG\r\n- 15MG A CADA 0,5ML\r\n- CANETA 2ML - TOTAL 60MG\r\n- LABORAT\u00d3RIO - QUIMFA","unavailable":false,"image":"products\/TIRZECPEN.png"},{"sku":"TIRZEDRALVIAL","category":"TIRZEPATIDA","priority":88,"name":"TIRZE TIRZEDRAL 15MG - 4 VIAL","price":1250,"description":"- 4 AMPOLAS DE 15MG\r\n- CADA AMPOLA 0,5ML\r\n- TOTAL 60MG\r\n- LABORAT\u00d3RIO - CATEDRAL","image":"products\/TIRZEDRALVIAL.png"},{"sku":"TIRZESYNEDICALABS","category":"TIRZEPATIDA","priority":87,"name":"TIRZE SYNEDICA LABS 60MG P\u00d3 - 1 VIAL","price":750,"description":"- 1 AMPOLA DE 60MG\r\n- 15MG A CADA 0,5ml\r\n- AMPOLA 2ml - TOTAL 60MG\r\n- 1 \u00c1GUA 2ML PARA DILUI\u00c7\u00c3O\r\n- LABORAT\u00d3RIO: SYNEDICA LABS","info":null,"image":"products\/TIRZESYNEDICALABS.png"},{"sku":"TIRZESYNEDICALABS4","category":"TIRZEPATIDA","priority":86,"name":"TIRZE SYNEDICA LABS 240MG P\u00d3 - 4 VIAL","price":1750,"description":"- 4 AMPOLAS DE 60MG\r\n- 15MG A CADA 0,5ml\r\n- AMPOLA 2ml - TOTAL 60MG\r\n- 4 \u00c1GUAS 2ML PARA DILUI\u00c7\u00c3O\r\n- LABORAT\u00d3RIO: SYNEDICA LABS","info":null,"image":"products\/TIRZESYNEDICALABS4.png"},{"sku":"VELTRANEMD","category":"TIRZEPATIDA","priority":82,"name":"TIRZE VELTRANE MD 60MG - 1 VIAL","price":900,"description":"- 1 AMPOLA DE 60MG\r\n- 10MG A CADA 1ml\r\n- AMPOLA 6ml - TOTAL 60MG\r\n- ORIGEM E PRODU\u00c7\u00c3O B\u00c9LGICA","unavailable":false,"image":"products\/VELTRANEMD.png"},{"sku":"TIRZETNL","category":"TIRZEPATIDA","priority":82,"name":"TIRZE PEN 60MG - TNL","price":1150,"description":"- 1 CANETA DE 60MG\r\n- 15MG A CADA 0,75ML\r\n- CANETA 3ML - TOTAL 60MG\r\n- LABORAT\u00d3RIO - TNL","unavailable":false,"image":"products\/TIRZETNL.png"},{"sku":"TIRZEZPHC","category":"TIRZEPATIDA","priority":80,"name":"TIRZE ZPHC 50MG P\u00d3 - 5 VIAL","price":1250,"description":"- 5 AMPOLAS DE 10MG EM P\u00d3\r\n- TOTAL 50MG\r\n- 11ML DE \u00c1GUA PARA DILUI\u00c7\u00c3O\r\n- LABORAT\u00d3RIO - ZPHC","image":"products\/TIRZEZPHC.png"},{"sku":"MEDPLUSTIRZE","category":"TIRZEPATIDA","priority":79,"name":"TIRZE MEDPLUS 15MG P\u00d3 - 4 VIAL","price":1150,"description":"- 4 AMPOLAS DE 15MG EM P\u00d3\r\n- TOTAL 60MG\r\n- 10ML DE \u00c1GUA PARA DILUI\u00c7\u00c3O\r\n- LABORAT\u00d3RIO - AMERICANO","info":null,"image":"products\/MEDPLUSTIRZE.png"},{"sku":"RTSYNEDICA","category":"RETATRUTIDE","priority":78,"name":"RETATRUTIDE 40MG - SYNEDICA","price":1620,"description":"- 1 CANETA DE 40MG - 3ML\r\n- LABORAT\u00d3RIO - SYNEDICA\r\n- 12 AGULHAS NA CAIXA\r\n- RENDE 16 DOSES DE 2,5MG","image":"products\/RTSYNEDICA.png"},{"sku":"RTZZPYA","category":"RETATRUTIDE","priority":77,"name":"RETATRUTIDE 40MG - Z\u00c9PYA ","price":1790,"description":"- 1 CANETA DE 40MG - 3ML\r\n- LABORAT\u00d3RIO - Z\u00c9PYA\r\n- 4 AGULHAS NA CAIXA\r\n- RENDE 16 DOSES DE 2,5MG","image":"products\/RTZZPYA.png"},{"sku":"RTTNL","category":"RETATRUTIDE","priority":76,"name":"RETATRUTIDE 40MG - TNL","price":1550,"description":"- 1 CANETA DE 40MG - 3ML\r\n- LABORAT\u00d3RIO - TNL\r\n- RENDE 16 DOSES DE 2,5MG","info":null,"image":"products\/RTTNL.png"},{"sku":"PENNAD","category":"PEPT\u00cdDEOS","priority":76,"name":"CANETA NAD+ & B12 - OXYGEN","price":1560,"description":"NAD+ com vitamina B12 \u00e9 uma combina\u00e7\u00e3o estudada por seu papel no metabolismo celular e na produ\u00e7\u00e3o de energia.\r\n\r\nO NAD+ atua diretamente na fun\u00e7\u00e3o mitocondrial e na repara\u00e7\u00e3o celular, enquanto a vitamina B12 auxilia na forma\u00e7\u00e3o de c\u00e9lulas sangu\u00edneas, fun\u00e7\u00e3o neurol\u00f3gica e metabolismo energ\u00e9tico, sendo investigados juntos por seu potencial em vitalidade, desempenho e sa\u00fade metab\u00f3lica.\r\n\r\n- 1 CANETAS DE 1000MG NAD+ \/ 4000mcg B12\r\n- LABORAT\u00d3RIO - OXYGEN\r\n- RENDE 20 DOSES DE 50MG","unavailable":false,"image":"products\/PENNAD.png"},{"sku":"RTFGP","category":"RETATRUTIDE","priority":75,"name":"RETATRUTIDE 40MG EM P\u00d3 - FGP","price":1600,"description":"- 1 AMPOLA DE 40MG EM P\u00d3 + 1 \u00c1GUA BAC DE 3ML\r\n- LABORAT\u00d3RIO - FGP\r\n- RENDE 16 DOSES DE 2,5MG","info":null,"image":"products\/RTFGP.png"},{"sku":"RETAVELT","category":"RETATRUTIDE","priority":75,"name":"RETATRUTIDE VELTRANE 60MG - 1 VIAL","price":1500,"description":"- 1 AMPOLA DE 60MG\r\n- 10MG A CADA 1ml\r\n- AMPOLA 6ml - TOTAL 60MG\r\n- ORIGEM E PRODU\u00c7\u00c3O B\u00c9LGICA","image":"products\/RETAVELT.png"},{"sku":"RETAZPHC40","category":"RETATRUTIDE","priority":75,"name":"RETATRUTIDE 40MG - ZPHC","price":1950,"description":"- 5 AMPOLAS DE 8MG EM P\u00d3\r\n- TOTAL 40MG\r\n- 11ML DE \u00c1GUA PARA DILUI\u00c7\u00c3O\r\n- LABORAT\u00d3RIO - ZPHC","image":"products\/RETAZPHC40.png"},{"sku":"RETAZPHC120","category":"RETATRUTIDE","priority":75,"name":"RETATRUTIDE 120MG - ZPHC","price":3450,"description":"- 5 AMPOLAS DE 24MG EM P\u00d3\r\n- TOTAL 120MG\r\n- 11ML DE \u00c1GUA PARA DILUI\u00c7\u00c3O\r\n- LABORAT\u00d3RIO - ZPHC","image":"products\/RETAZPHC120.png"},{"sku":"ZPHCRETA24","category":"RETATRUTIDE","priority":75,"name":"RETATRUTIDE 24MG - ZPHC","price":1150,"description":"- 1 AMPOLA DE 24MG EM P\u00d3\r\n- TOTAL 24MG\r\n- 2ML DE \u00c1GUA PARA DILUI\u00c7\u00c3O\r\n- LABORAT\u00d3RIO - ZPHC","image":"products\/ZPHCRETA24.jpeg"},{"sku":"PENGLOWOX","category":"PEPT\u00cdDEOS","priority":75,"name":"CANETA GLOW GHK-CU - OXYGEN","price":1520,"description":"O Glow Blend cont\u00e9m 3 componentes: GHK-Cu 50mg, BPC-157 10mg e TB-500 10mg.\r\n\r\nO pept\u00eddeo Glow \u00e9 um composto sint\u00e9tico utilizado em pesquisas, estudado por seu potencial na regenera\u00e7\u00e3o celular e reparo de tecidos. Em ambiente laboratorial, auxilia na investiga\u00e7\u00e3o de processos como cicatriza\u00e7\u00e3o, vitalidade da pele e mecanismos regenerativos.\r\n\r\n- 1 CANETA DE 50MG - TOTAL 50MG\r\n- LABORAT\u00d3RIO - OXYGEN\r\n- RENDE 50 DOSES DE 1MG","unavailable":false,"image":"products\/PENGLOWOX.png"},{"sku":"GLOWPEN","category":"PEPT\u00cdDEOS","priority":74,"name":"CANETA GLOW GHK-CU - ALLUVI","price":1690,"description":"O Glow Blend cont\u00e9m 3 componentes: GHK-Cu 50mg, BPC-157 10mg e TB-500 10mg.\r\n\r\nO pept\u00eddeo Glow \u00e9 um composto sint\u00e9tico utilizado em pesquisas, estudado por seu potencial na regenera\u00e7\u00e3o celular e reparo de tecidos. Em ambiente laboratorial, auxilia na investiga\u00e7\u00e3o de processos como cicatriza\u00e7\u00e3o, vitalidade da pele e mecanismos regenerativos.\r\n\r\n- 2 CANETAS DE 25MG - TOTAL 50MG\r\n- LABORAT\u00d3RIO - ALLUVI\r\n- RENDE 40 DOSES DE 1,25MG","unavailable":false,"image":"products\/GLOWPEN.png"},{"sku":"WOLVPEN","category":"PEPT\u00cdDEOS","priority":73,"name":"CANETA BPC157 & TB500 - ALLUVI","price":1850,"description":"Essa combina\u00e7\u00e3o de pept\u00eddeos com BPC-157 e TB-500 \u00e9 utilizada em pesquisas para potencializar a repara\u00e7\u00e3o e regenera\u00e7\u00e3o tecidual.\r\n\r\nO BPC-157 auxilia na cicatriza\u00e7\u00e3o e na redu\u00e7\u00e3o da inflama\u00e7\u00e3o, enquanto o TB-500 favorece a migra\u00e7\u00e3o celular e a forma\u00e7\u00e3o de novos vasos sangu\u00edneos (angiog\u00eanese), oferecendo uma abordagem mais completa para estudos musculoesquel\u00e9ticos e de cicatriza\u00e7\u00e3o.\r\n\r\n- 1 CANETAS DE 40MG\r\n- LABORAT\u00d3RIO - ALLUVI\r\n- RENDE 40 DOSES DE 1MG","unavailable":false,"image":"products\/WOLVPEN.png"},{"sku":"NADSYLAB","category":"PEPT\u00cdDEOS","priority":72,"name":"CANETA NAD+ SYNEDICA LABS","price":2100,"description":"O dinucleot\u00eddeo de nicotinamida e adenina (NAD+) \u00e9 uma coenzima essencial envolvida no metabolismo celular e na produ\u00e7\u00e3o de energia.\r\n\r\nPesquisas destacam seu papel no envelhecimento, na repara\u00e7\u00e3o do DNA e na fun\u00e7\u00e3o mitocondrial. A suplementa\u00e7\u00e3o de NAD+ \u00e9 estudada por seu potencial em promover benef\u00edcios relacionados \u00e0 longevidade e \u00e0 sa\u00fade metab\u00f3lica.\r\n\r\n- 1 CANETAS DE 1000MG\r\n- LABORAT\u00d3RIO - SYNEDICA LABS\r\n- RENDE 40 DOSES DE 25MG \/ 20 DOSES DE 50MG","unavailable":false,"image":"products\/NADSYLAB.png"},{"sku":"NADB12","category":"PEPT\u00cdDEOS","priority":72,"name":"CANETA NAD+ & B12 - SYNEDICA","price":1750,"description":"NAD+ com vitamina B12 \u00e9 uma combina\u00e7\u00e3o estudada por seu papel no metabolismo celular e na produ\u00e7\u00e3o de energia.\r\n\r\nO NAD+ atua diretamente na fun\u00e7\u00e3o mitocondrial e na repara\u00e7\u00e3o celular, enquanto a vitamina B12 auxilia na forma\u00e7\u00e3o de c\u00e9lulas sangu\u00edneas, fun\u00e7\u00e3o neurol\u00f3gica e metabolismo energ\u00e9tico, sendo investigados juntos por seu potencial em vitalidade, desempenho e sa\u00fade metab\u00f3lica.\r\n\r\n- 1 CANETAS DE 1000MG NAD+ \/ 4000mcg B12\r\n- LABORAT\u00d3RIO - SYNEDICA\r\n- RENDE 20 DOSES DE 50MG","unavailable":false,"image":"products\/NADB12.png"},{"sku":"GHKCU100","category":"PEPT\u00cdDEOS","priority":72,"name":"PEPT\u00cdDEO GHK-CU 100MG - nexaph","price":850,"description":"GHK-Cu \u00e9 um pept\u00eddeo de cobre naturalmente presente no organismo, amplamente estudado por seu papel na regenera\u00e7\u00e3o da pele e na s\u00edntese de col\u00e1geno.\r\n\r\nPossui propriedades anti-inflamat\u00f3rias e antioxidantes, sendo utilizado em pesquisas voltadas \u00e0 cicatriza\u00e7\u00e3o, remodela\u00e7\u00e3o tecidual e rejuvenescimento. Nas vers\u00f5es de 50mg e 100mg, permite estudos mais prolongados em aplica\u00e7\u00f5es dermatol\u00f3gicas e regenerativas.\r\n\r\n- 1 AMPOLA DE 100MG EM P\u00d3 + 1 \u00c1GUA BAC DE 2ML\r\n- LABORAT\u00d3RIO - nexaph\r\n- RENDE 100 DOSES DE 1MG OU 50 DOSES DE 2MG","unavailable":false,"image":"products\/GHKCU100.png"},{"sku":"IPA10","category":"PEPT\u00cdDEOS","priority":72,"name":"PEPT\u00cdDEO IPAMORELIN 10MG - FGP","price":750,"description":"Ipamorelina \u00e9 um pept\u00eddeo sint\u00e9tico utilizado em pesquisas para estimular a libera\u00e7\u00e3o do horm\u00f4nio do crescimento de forma mais controlada.\r\n\r\nAtua diretamente nos receptores de grelina, sendo estudada por seu potencial em melhorar a recupera\u00e7\u00e3o muscular, auxiliar no metabolismo, favorecer o crescimento magro e contribuir para processos de reparo tecidual e regula\u00e7\u00e3o hormonal.\r\n\r\n- 1 AMPOLA DE 10MG EM P\u00d3 + 1 \u00c1GUA BAC DE 3ML\r\n- LABORAT\u00d3RIO - FGP\r\n- RENDE 40 DOSES DE 250MCG OU 20 DOSES DE 500MCG","unavailable":false,"image":"products\/IPA10.png"},{"sku":"TESA10","category":"PEPT\u00cdDEOS","priority":72,"name":"PEPT\u00cdDEO TESAMORELIN 10MG - FGP","price":780,"description":"Tesamorelina \u00e9 um pept\u00eddeo sint\u00e9tico que estimula a libera\u00e7\u00e3o do horm\u00f4nio do crescimento.\r\n\r\nUtilizada em pesquisas metab\u00f3licas, \u00e9 estudada por seu potencial na redu\u00e7\u00e3o da gordura visceral, na regula\u00e7\u00e3o hormonal e em poss\u00edveis efeitos relacionados ao envelhecimento, equil\u00edbrio energ\u00e9tico e sa\u00fade metab\u00f3lica em modelos experimentais.\r\n\r\n- 1 AMPOLA DE 10MG EM P\u00d3 + 1 \u00c1GUA BAC DE 3ML\r\n- LABORAT\u00d3RIO - FGP\r\n- RENDE 10 DOSES DE 1MG OU 20 DOSES DE 500MCG DEPENDENDO DO PROT\u00d3COLO 40 DOSES DE 250MCG","unavailable":false,"image":"products\/TESA10.png"},{"sku":"CGT10","category":"PEPT\u00cdDEOS","priority":70,"name":"PEPT\u00cdDEO CAGRILINTIDE 10MG - FGP","price":850,"description":"Cagrilintida \u00e9 um an\u00e1logo da amilina estudado por seu papel na regula\u00e7\u00e3o do apetite e no controle da glicose.\r\n\r\nPesquisas indicam que pode ajudar a reduzir a ingest\u00e3o de alimentos, promover perda de peso e melhorar a sa\u00fade metab\u00f3lica, sendo relevante em estudos sobre obesidade e controle do diabetes.\r\n\r\n- 1 AMPOLA DE 10MG EM P\u00d3 + 1 \u00c1GUA BAC DE 3ML\r\n- LABORAT\u00d3RIO - FGP\r\n- RENDE 10 DOSES DE 1MG OU 20 DOSES DE 500MCG DEPENDENDO DO PROT\u00d3COLO 40 DOSES DE 250MCG","unavailable":false,"image":"products\/CGT10.png"},{"sku":"PEPSS","category":"PEPT\u00cdDEOS","priority":69,"name":"PEPT\u00cdDEO SS-31 10MG - FGP","price":650,"description":"SS-31 (Elamipretide) \u00e9 um pept\u00eddeo direcionado \u00e0s mitoc\u00f4ndrias, estudado por sua capacidade de proteger a fun\u00e7\u00e3o mitocondrial.\r\n\r\nAtua como antioxidante, reduzindo esp\u00e9cies reativas de oxig\u00eanio, auxiliando na produ\u00e7\u00e3o de energia celular e sendo investigado por seu potencial em melhorar a performance muscular, a resist\u00eancia ao exerc\u00edcio e a sa\u00fade das mitoc\u00f4ndrias.\r\n\r\n- 1 AMPOLA DE 10MG EM P\u00d3 + 1 \u00c1GUA BAC DE 3ML\r\n- LABORAT\u00d3RIO - FGP\r\n- RENDE 10 DOSES DE 1MG OU 20 DOSES DE 500MCG DEPENDENDO DO PROT\u00d3COLO 40 DOSES DE 250MCG","unavailable":false,"image":"products\/PEPSS.png"},{"sku":"PEP5AMINO","category":"PEPT\u00cdDEOS","priority":68,"name":"PEPT\u00cdDEO 5-AMINO-1-MQ 50MG - FGP","price":650,"description":"5-Amino-1MQ (50mg), um inibidor de NNMT de alta pureza, \u00e9 amplamente utilizado em pesquisas metab\u00f3licas.\r\n\r\nEstudos sugerem seu papel na modula\u00e7\u00e3o do metabolismo lip\u00eddico, na melhora da fun\u00e7\u00e3o mitocondrial e na influ\u00eancia nos n\u00edveis de NAD+, oferecendo insights sobre o equil\u00edbrio energ\u00e9tico e o controle de peso em modelos experimentais.\r\n\r\n- 1 AMPOLA DE 50MG EM P\u00d3 + 1 \u00c1GUA BAC DE 3 ML\r\n- LABORAT\u00d3RIO - FGP\r\n- RENDE 10 DOSES DE 5MG OU 20 DOSES DE 2,5MG","unavailable":false,"image":"products\/PEP5AMINO.png"},{"sku":"BACWAT3","category":"PEPT\u00cdDEOS","priority":67,"name":"\u00c1GUA BACTERIOST\u00c1TICA 3ML - FGP","price":60,"description":"","unavailable":false,"image":"products\/BACWAT3.png"},{"sku":"BACWAT10","category":"PEPT\u00cdDEOS","priority":66,"name":"\u00c1GUA BACTERIOST\u00c1TICA 10ML - FGP","price":130,"description":"","image":"products\/BACWAT10.jpeg"},{"sku":"ENANCOOPER","category":"ANAB\u00d3LICOS","priority":55,"name":"ENANTATO ENANBOLIC 250MG - COOPER","price":380,"description":"Enantato - Enanbolic\r\n10 Ampolas - 250mg\/ml","info":null,"image":"products\/ENANCOOPER.png"},{"sku":"DURACOOPER","category":"ANAB\u00d3LICOS","priority":54,"name":"DURATESTON SUSULOLIC 250MG - COOPER","price":380,"description":"Durateston - Susulolic\r\n10 Ampolas - 250mg\/ml","info":null,"image":"products\/DURACOOPER.png"},{"sku":"MASTERCOOPER","category":"ANAB\u00d3LICOS","priority":53,"name":"MASTERON MASTERBOLIC 100MG - COOPER","price":550,"description":"Masteron - Masterbolic - Drostanolone Propionate\r\n10 Ampolas - 100mg\/ml","image":"products\/MASTERCOOPER.png"},{"sku":"DURAGOLD","category":"ANAB\u00d3LICOS","priority":50,"name":"TESTENAT ENANTATO 250MG - LANDER","price":185,"description":"- 1 AMPOLA DE 10ML\r\n- LINHA: LANDERGOLD\r\n- LABORAT\u00d3RIO - LANDERLAN\r\n- RENDE 10 DOSES DE 1ML\/250MG","info":null,"image":"products\/DURAGOLD.png"},{"sku":"DURALAND","category":"ANAB\u00d3LICOS","priority":49,"name":"DURATESTON PLUS GOLD 250MG - LANDER","price":195,"description":"- 1 AMPOLA DE 10ML\r\n- LINHA: LANDERGOLD\r\n- LABORAT\u00d3RIO - LANDERLAN\r\n- RENDE 10 DOSES DE 1ML\/250MG","info":null,"image":"products\/DURALAND.png"},{"sku":"MASTERLANDER","category":"ANAB\u00d3LICOS","priority":48,"name":"MASTERON PROPIONATO 100MG - LANDER","price":190,"description":"- 1 AMPOLA DE 10ML\r\n- LABORAT\u00d3RIO - LANDERLAN\r\n- RENDE 10 DOSES DE 1ML\/100MG","info":null,"image":"products\/MASTERLANDER.png"},{"sku":"DECALANDER","category":"ANAB\u00d3LICOS","priority":47,"name":"DECALAND 200MG - LANDER","price":190,"description":"- 1 AMPOLA DE 10ML\r\n- LINHA: LANDERGOLD\r\n- LABORAT\u00d3RIO - LANDERLAN\r\n- RENDE 10 DOSES DE 1ML\/200MG","info":null,"image":"products\/DECALANDER.png"},{"sku":"DEPOGOLD","category":"ANAB\u00d3LICOS","priority":46,"name":"CIPIONATO DEPOSTERON 100MG - LANDER","price":180,"description":"- 1 AMPOLA DE 10ML\r\n- LINHA: LANDERGOLD\r\n- LABORAT\u00d3RIO - LANDERLAN\r\n- RENDE 10 DOSES DE 1ML\/100MG","info":null,"image":"products\/DEPOGOLD.png"},{"sku":"PRIMOGOLD","category":"ANAB\u00d3LICOS","priority":45,"name":"PRIMOBOLAN 100MG - LANDER","price":360,"description":"- 1 AMPOLA DE 10ML\r\n- LINHA: LANDERGOLD\r\n- LABORAT\u00d3RIO - LANDERLAN\r\n- RENDE 10 DOSES DE 1ML\/100MG","info":null,"image":"products\/PRIMOGOLD.png"},{"sku":"OXLAND","category":"ANAB\u00d3LICOS","priority":44,"name":"OXANDROLONA 10MG\/50COMP - LANDER","price":225,"description":"- 1 CAIXA COM 50 COMPRIMIDOS\r\n- LABORAT\u00d3RIO - LANDERLAN\r\n- 50 COMPRIMIDOS DE 10MG","unavailable":false,"image":"products\/OXLAND.png"},{"sku":"STANOLAND","category":"ANAB\u00d3LICOS","priority":43,"name":"STANOZOLOL 10MG\/100COMP - LANDER","price":115,"description":"- 1 FRASCO COM 100 COMPRIMIDOS\r\n- LABORAT\u00d3RIO - LANDERLAN\r\n- 100 COMPRIMIDOS DE 10MG","info":null,"image":"products\/STANOLAND.png"},{"sku":"HEMOLAND","category":"ANAB\u00d3LICOS","priority":42,"name":"HEMOGENIN 50MG\/20COMP - LANDER","price":115,"description":"- 1 CAIXA COM 20 COMPRIMIDOS\r\n- LABORAT\u00d3RIO - LANDERLAN\r\n- 20 COMPRIMIDOS DE 50MG","info":null,"image":"products\/HEMOLAND.png"},{"sku":"CBD","category":"OUTROS","priority":0,"name":"CBD 50MG - LASCA","price":900,"description":"- 1 VIDRO DE 50ML\r\n- LABORAT\u00d3RIO - LASCA\r\n- 50mg\/ml - total 50ml","unavailable":false,"image":"products\/CBD.png"},{"sku":"PEPBPC","category":"PEPT\u00cdDEOS","priority":0,"name":"PEPT\u00cdDEO BPC-157 10MG - FGP","price":500,"description":"- 1 AMPOLA DE 10MG EM P\u00d3 + 1 \u00c1GUA BAC DE 3ML\r\n- LABORAT\u00d3RIO - FGP\r\n- RENDE 10 DOSES DE 1MG OU 20 DOSES DE 500MCG","unavailable":true,"image":"products\/PEPBPC.png"},{"sku":"PEPTB500","category":"PEPT\u00cdDEOS","priority":0,"name":"PEPT\u00cdDEO TB-500 10MG - FGP","price":500,"description":"- 1 AMPOLA DE 10MG EM P\u00d3 + 1 \u00c1GUA BAC DE 3ML\r\n- LABORAT\u00d3RIO - FGP\r\n- RENDE 10 DOSES DE 1MG OU 20 DOSES DE 500MCG DEPENDENDO DO PROT\u00d3COLO 40 DOSES DE 250MCG","unavailable":true,"image":"products\/PEPTB500.png"},{"sku":"VITHAIR","category":"OUTROS","priority":0,"name":"QUENAVIN 30 CAPS - ETICOS","price":279,"description":"L-Cistina + Vitaminas e Minerais, 30 c\u00e1psulas, via oral. Fortalece o cabelo desde a raiz.","info":null,"image":"products\/VITHAIR.png"},{"sku":"ACIDHI","category":"OUTROS","priority":0,"name":"\u00c1CIDO HIALUR\u00d4NICO -  LINE BODY 55","price":1390,"description":"Line Body 55ml","unavailable":false,"image":"products\/ACIDHI.png"},{"sku":"LIPOSTABIL","category":"OUTROS","priority":0,"name":"ENZIMA LIPOSTABIL - AVENTIS","price":180,"description":"- 250MG\/5ML\r\n- 5 AMPOLAS\r\n- TOTAL DE 25ML","image":"products\/LIPOSTABIL.png"},{"sku":"DYSPORT","category":"OUTROS","priority":0,"name":"BOTOX DYSPORT 500ui","price":1590,"description":"TOXINA BOTULINICA TIPO A\r\nAMPOLA 500ui\r\n","image":"products\/DYSPORT.png"},{"sku":"MELABUENAS","category":"OUTROS","priority":0,"name":"MELATONINA 3MG BUENAS NOCHES - QUIMFA","price":119,"description":"- LINHA BUENAS NOCHES\r\n- 30 COMPRIMIDOS DE 3MG\r\n- LABORAT\u00d3RIO - QUIMFA (MESMO DA TIRZEC)","unavailable":false,"image":"products\/MELABUENAS.png"},{"sku":"VITD","category":"OUTROS","priority":0,"name":"MAXIVIT D3 100.000ui 1 CAP - QUIMFA","price":95,"description":"MAXIVIT D3 100.000 UI \u00e9 um suplemento de vitamina D3 em alta concentra\u00e7\u00e3o, indicado para o tratamento da defici\u00eancia de vitamina D em adultos. Auxilia na absor\u00e7\u00e3o de c\u00e1lcio e f\u00f3sforo, contribuindo para a sa\u00fade \u00f3ssea, fun\u00e7\u00e3o muscular e equil\u00edbrio metab\u00f3lico. C\u00e1psula de f\u00e1cil ingest\u00e3o e alta biodisponibilidade.","image":"products\/VITD.png"},{"sku":"MINO6","category":"OUTROS","priority":0,"name":"KIRKLAND MINOXIDIL 5% - 6 FRASCOS","price":340,"description":"O Minoxidil Kirkland 5% Original \u00e9 o tratamento mais utilizado no mundo para quem busca crescer barba, fortalecer o cabelo e preencher falhas naturais.\r\nNesta vers\u00e3o exclusiva, voc\u00ea recebe a caixa lacrada com 6 frascos de 60 ml.","image":"products\/MINO6.png"},{"sku":"MINO3","category":"OUTROS","priority":0,"name":"KIRKLAND MINOXIDIL 5% - 3 FRASCOS","price":220,"description":"O Minoxidil Kirkland 5% Original \u00e9 o tratamento mais utilizado no mundo para quem busca crescer barba, fortalecer o cabelo e preencher falhas naturais.\r\nNesta vers\u00e3o exclusiva, voc\u00ea recebe a caixa lacrada com 3 frascos de 60 ml.","image":"products\/MINO3.png"},{"sku":"RETAZPHCPEN","category":"RETATRUTIDE","priority":0,"name":"RETATRUTIDE 60MG PEN - ZPHC","price":2400,"description":"- 1 CANETA DE 60MG - 3ML\r\n- LABORAT\u00d3RIO - ZPHC\r\n- RENDE 24 DOSES DE 2,5MG","image":"products\/RETAZPHCPEN.png"},{"sku":"IGF1UTH","category":"PEPT\u00cdDEOS","priority":0,"name":"PEPT\u00cdDEO IGF-1 LR3 1MG - UTHER","price":850,"description":"IGF-1 LR3, um an\u00e1logo de fator de crescimento semelhante \u00e0 insulina de longa dura\u00e7\u00e3o, auxilia no crescimento muscular, na repara\u00e7\u00e3o dos tecidos e na regula\u00e7\u00e3o metab\u00f3lica.\r\n\r\nAmplamente estudado em modelos experimentais, apresenta potencial para hipertrofia muscular esquel\u00e9tica, fun\u00e7\u00e3o cognitiva, medicina regenerativa e pesquisas relacionadas ao desempenho esportivo.\r\n\r\n- 1 AMPOLA DE 1MG EM P\u00d3 + 1 \u00c1GUA BAC DE 3ML\r\n- LABORAT\u00d3RIO - UTHER\r\n- RENDE 10 DOSES DE 100MCG OU 20 DOSES DE 50MCG.","unavailable":false,"image":"products\/IGF1UTH.png"},{"sku":"SMXUTHER","category":"PEPT\u00cdDEOS","priority":0,"name":"PEPT\u00cdDEO SEMAX 10MG - UTHER","price":850,"description":"Semax (10mg) \u00e9 um pept\u00eddeo neuroprotetor utilizado em pesquisas para estudar fun\u00e7\u00e3o cognitiva, mem\u00f3ria e aprendizado.\r\n\r\nPode melhorar a aten\u00e7\u00e3o, auxiliar na sa\u00fade cerebral e influenciar vias relacionadas ao estresse e \u00e0 ansiedade, oferecendo insights sobre doen\u00e7as neurodegenerativas e dist\u00farbios cognitivos.\r\n\r\n- 1 AMPOLA DE 10MG EM P\u00d3 + 1 \u00c1GUA BAC DE 3ML\r\n- LABORAT\u00d3RIO - UTHER\r\n- RENDE 100 DOSES DE 100MCG OU 50 DOSES DE 200MCG.","unavailable":false,"image":"products\/SMXUTHER.png"},{"sku":"HGHFRAG","category":"PEPT\u00cdDEOS","priority":0,"name":"PEPT\u00cdDEO HGH FRAG 5MG - UTHER","price":850,"description":"HGH Fragment 176-191 \u00e9 um pept\u00eddeo sint\u00e9tico derivado do horm\u00f4nio do crescimento, amplamente utilizado em pesquisas relacionadas ao metabolismo de gordura.\r\n\r\nEstudos indicam que atua de forma mais espec\u00edfica na lip\u00f3lise (quebra de gordura), sem impactar significativamente os n\u00edveis de glicose, sendo investigado por seu potencial em auxiliar na redu\u00e7\u00e3o de gordura corporal, melhorar a composi\u00e7\u00e3o corporal e apoiar estudos sobre metabolismo e desempenho f\u00edsico.\r\n\r\n- 1 AMPOLA DE 5MG EM P\u00d3 + 1 \u00c1GUA BAC DE 3ML\r\n- LABORAT\u00d3RIO - UTHER\r\n- RENDE 20 DOSES DE 250MCG OU 25 DOSES DE 200MCG.","unavailable":false,"image":"products\/HGHFRAG.png"},{"sku":"MASTERCANADA","category":"ANAB\u00d3LICOS","priority":0,"name":"MASTERON PROPIONATE 100MG - CANADA","price":580,"description":"Masteron - Drostanolone Propionate\r\n10 Ampolas - 100mg\/ml","unavailable":false,"image":"products\/MASTERCANADA.png"},{"sku":"oxland5","category":"ANAB\u00d3LICOS","priority":0,"name":"OXANDROLONA 5MG\/100COMP - LANDER - CANADA","price":225,"description":"- 1 FRASCO COM 100 COMPRIMIDOS\r\n- LABORAT\u00d3RIO - LANDERLAN\r\n- 100 COMPRIMIDOS DE 5MG","unavailable":false,"image":"products\/oxland5.png"},{"sku":"VENVA","category":"OUTROS","priority":0,"name":"LIXPAX 30 (Venvanse) - QUIMFA","price":540,"description":"LIXPAX 30 (Venvanse)\r\n30 CAPS\r\nLABORAT\u00d3RIO QUIMFA","unavailable":false,"image":"products\/VENVA.png"},{"sku":"RETA90","category":"RETATRUTIDE","priority":0,"name":"RETATRUTITE VELTRANE GOLD 90MG","price":1900,"description":"- 1 AMPOLA DE 90MG\r\n- 15MG A CADA 1ml\r\n- AMPOLA 6ml - TOTAL 90MG\r\n- ORIGEM E PRODU\u00c7\u00c3O B\u00c9LGICA","unavailable":false,"image":"products\/RETA90.png"},{"sku":"SEMAGLIX","category":"OUTROS","priority":0,"name":"SemaGlix 1,34 mg\/ml - QUIMFA","price":980,"description":"Semaglutida Semaglix 1,34mg \u2013 3ml\r\n\r\nIndicada para uso em protocolos de acompanhamento m\u00e9dico voltados ao controle metab\u00f3lico e glic\u00eamico, a Semaglix \u00e9 uma solu\u00e7\u00e3o injet\u00e1vel de alta qualidade, utilizada em estrat\u00e9gias para suporte no manejo do diabetes e regula\u00e7\u00e3o do apetite.\r\n\r\nApresenta\u00e7\u00e3o completa contendo 1 vial com 3ml e 4 seringas est\u00e9reis com agulha, pronta para uso com seguran\u00e7a e praticidade.","unavailable":false,"image":"products\/SEMAGLIX.jpg"},{"sku":"clemb","category":"ANAB\u00d3LICOS","priority":0,"name":"Clembuterol Clorhidrato \u2013 0,04mg 50comp - landergold","price":150,"description":"Produto de alta qualidade, desenvolvido para protocolos espec\u00edficos sob orienta\u00e7\u00e3o adequada. O Clembuterol Clorhidrato \u00e9 conhecido por sua a\u00e7\u00e3o estimulante e utiliza\u00e7\u00e3o em estrat\u00e9gias voltadas ao desempenho e defini\u00e7\u00e3o.\r\n\r\nApresenta\u00e7\u00e3o com 50 comprimidos de 0,04mg, garantindo praticidade e padroniza\u00e7\u00e3o nas doses.","unavailable":false,"image":"products\/clemb.jpg"},{"sku":"HGHSOMA","category":"ANAB\u00d3LICOS","priority":0,"name":"SOMATROPIN (GH) 15UI - XT Labs Somatrox","price":750,"description":"Somatropina (GH) \u00e9 o horm\u00f4nio do crescimento utilizado para auxiliar na melhora da composi\u00e7\u00e3o corporal, promovendo redu\u00e7\u00e3o de gordura, aumento de massa magra e melhora na qualidade da pele. Tamb\u00e9m contribui para recupera\u00e7\u00e3o muscular, disposi\u00e7\u00e3o e regenera\u00e7\u00e3o do organismo. Seus efeitos s\u00e3o progressivos e potencializados com treino e alimenta\u00e7\u00e3o adequada.\r\n\r\n- 1 AMPOLA DE 15UI + \u00c1GUA BAC\r\n- LABORAT\u00d3RIO - XT LABS\r\n- RENDE 15 DOSES DE 1UI","unavailable":false,"image":"products\/HGHSOMA.jpg"}],
+                
+                categories: ["TIRZEPATIDA","RETATRUTIDE","PEPT\u00cdDEOS","ANAB\u00d3LICOS","OUTROS"],
+
+                setActiveCategory(category) {
+                    this.view = 'home';
+                    this.activeCategory = category === 'Todos' ? 'Todos' : (this.categories.includes(category) ? category : 'Todos');
+                },
+
+                isSelectedCategory(category) {
+                    return this.activeCategory === category;
+                },
+
+                get visibleCategories() {
+                    return this.activeCategory === 'Todos'
+                        ? this.categories
+                        : this.categories.filter(cat => cat === this.activeCategory);
+                },
+
+                get showFeedbacks() {
+                    return this.activeCategory === 'Todos';
+                },
+                
+                getProductsByCategory(cat) {
+                    return this.products.filter(p => p.category === cat);
+                },
+                 
+                get filteredProducts() {
+                    if (this.activeCategory === 'Todos') return this.products;
+                    return this.products.filter(p => p.category === this.activeCategory);
+                },
+                
+                formatPrice(val) {
+                    return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(val);
+                },
+                get cartTotal() {
+                    return this.cart.reduce((s, i) => s + i.price, 0);
+                },
+                openProduct(p) { 
+                    if (!(p.unavailable || false)) {
+                        this.activeProduct = p;
+                    }
+                },
+                addToCart(p) { this.cart.push(p); this.view = 'cart'; },
+                removeFromCart(i) { this.cart.splice(i, 1); },
+                checkoutWhatsApp() {
+                    let msg = "*WM IMPORTS - NOVO PEDIDO*\n\n";
+                    this.cart.forEach(i => msg += `• ${i.name} (${this.formatPrice(i.price)})\n`);
+                    msg += `\n*Total: ${this.formatPrice(this.cartTotal)}*`;
+                    window.open(`https://wa.me/5511971280942?text=${encodeURIComponent(msg)}`);
+                },
+                shareWhatsApp() {
+                    if (navigator.share && navigator.canShare) { 
+                        fetch(this.activeProduct.image)
+                            .then(response => response.blob())
+                            .then(blob => {
+                                const file = new File([blob], 'product.jpg', { type: blob.type });
+                                const shareData = {
+                                    title: this.activeProduct.name,
+                                    text: `${this.activeProduct.name} - ${this.formatPrice(this.activeProduct.price)}\n\n${this.activeProduct.description}\n\n🔥 WM Imports 🔥`,
+                                    url: window.location.href,
+                                    files: [file]
+                                };
+                                
+                                if (navigator.canShare(shareData)) {
+                                    navigator.share(shareData);
+                                } else { 
+                                    this.fallbackShare();
+                                }
+                            })
+                            .catch(() => { 
+                                this.fallbackShare();
+                            });
+                    } else {
+                        this.fallbackShare();
+                    }
+                },
+                fallbackShare() {
+                    const baseUrl = window.location.origin + window.location.pathname.replace(/\/[^\/]*$/, '/');
+                    const fullImageUrl = this.activeProduct.image.startsWith('http') ? 
+                        this.activeProduct.image : 
+                        baseUrl + this.activeProduct.image;
+                    
+                    const text = `🛒 *${this.activeProduct.name}*\n\n💰 ${this.formatPrice(this.activeProduct.price)}\n\n📝 ${this.activeProduct.description}\n\n🔥 WM Imports - www.wmimports.com.py\n\n📱 ${baseUrl}`;
+                    window.open(`https://wa.me/?text=${encodeURIComponent(text)}`);
+                },
+                shareFacebook() {
+                    const url = window.location.href;
+                    const text = `${this.activeProduct.name} - WM Imports`;
+                    window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&quote=${encodeURIComponent(text)}`);
+                }, 
+                copyLink() {
+                    const url = window.location.href;
+                    navigator.clipboard.writeText(url).then(() => {
+                        // Show toast notification
+                        const toast = document.createElement('div');
+                        toast.className = 'fixed top-5 right-5 z-[110] p-4 rounded-2xl shadow-xl text-white font-black bg-emerald-500 animate__animated animate__fadeInDown';
+                        toast.textContent = 'Link copiado!';
+                        document.body.appendChild(toast);
+                        
+                        this.activeProduct = null;
+                        
+                        setTimeout(() => {
+                            toast.classList.add('animate__fadeOutUp');
+                            setTimeout(() => toast.remove(), 500);
+                        }, 2000);
+                    });
+                }
+            }
+        }
+    </script>
+
+</body></html>
