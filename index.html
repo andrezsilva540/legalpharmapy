@@ -2,27 +2,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
-    <title>WM IMPORTS | Produtos Originais | Garantia Total</title>
-    <meta name="description" content="A WM IMPORTS oferece os melhores produtos originais de saúde e emagrecimento com garantia total. Atendimento 24 horas no Brás, SP. Qualidade e procedência garantida.">
-    <meta name="keywords" content="WM Imports, produtos originais, garantia total, emagrecimento Brás, suplementos 24 horas, produtos naturais SP, saúde e bem-estar Brás">
-    <meta name="author" content="WM Imports">
+    <title>Legal PharmaPY | Produtos Originais | Garantia Total</title>
+    <meta name="description" content="A legalpharmapy oferece os melhores produtos originais de saúde e emagrecimento com garantia total. Atendimento 24 horas no Brás, SP. Qualidade e procedência garantida.">
+    <meta name="keywords" content="legalpharmapy, produtos originais, garantia total, emagrecimento Brás, suplementos 24 horas, produtos naturais SP, saúde e bem-estar Brás">
+    <meta name="author" content="legalpharmapy">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://wmimports.com.py/">
+    <link rel="canonical" href="https://legalpharmapy.com/">
 
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://wmimports.com.py/">
-    <meta property="og:title" content="WM IMPORTS | Produtos Originais | Garantia Total">
+    <meta property="og:url" content="https://legalpharmapy.com/">
+    <meta property="og:title" content="legalpharmapy | Produtos Originais | Garantia Total">
     <meta property="og:description" content="Especialista em saúde e emagrecimento. Atendimento 24h no Brás com garantia total de originalidade.">
-    <meta property="og:image" content="https://wmimports.com.py/wmimports.png">
+    <meta property="og:image" content="https://legalpharmapy.com/wmimports.png">
 
     <script type="application/ld+json">
     {
       "@context": "https://schema.org/",
       "@type": "HealthAndBeautyBusiness",
-      "name": "WM IMPORTS",
-      "image": "https://wmimports.com.py/wmimports.png",
+      "name": "Legal PharmaPY",
+      "image": "https://legalpharmapy.com/wmimports.png",
       "description": "Loja especializada em produtos originais de saúde e emagrecimento com garantia total. Atendimento 24 horas.",
-      "url": "https://wmimports.com.py/",
+      "url": "https://legalpharmapy.com/",
       "telephone": "+5511971280942",
       "priceRange": "$$",
       "address": {
@@ -59,7 +59,7 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body x-data="wmStore()" class="font-sans text-slate-900 pb-20 lg:pb-10">
-    <button @click="view = 'cart'; window.scrollTo({ top: 0, behavior: 'smooth' })" class="fab-cart w-16 h-16 bg-[#c19101] text-white rounded-full flex items-center justify-center transition-transform active:scale-95 animate__animated animate__bounceIn">
+    <button @click="view = 'cart'; window.scrollTo({ top: 0, behavior: 'smooth' })" class="fab-cart w-16 h-16 bg-[#2563eb] text-white rounded-full flex items-center justify-center transition-transform active:scale-95 animate__animated animate__bounceIn">
         <i class="fas fa-shopping-cart text-xl"></i>
         <span x-show="cart.length &gt; 0" class="absolute top-0 right-0 bg-red-600 text-white text-[11px] font-black w-6 h-6 rounded-full flex items-center justify-center border-2 border-white" x-text="cart.length" style="display: none;">0</span>
     </button>
@@ -72,7 +72,7 @@
         <nav class="sticky top-[28px] z-[90] bg-[#010101] lg:justify-center border-b border-white/10 flex items-center px-4 py-3 space-x-3 overflow-x-auto no-scrollbar">
             <div class="flex-shrink-0 font-black italic text-lg text-white mr-4"><img class="w-[9rem] lg:hidden" src="wmimports.png"></div>
             
-            <button @click="setActiveCategory('Todos')" class="whitespace-nowrap px-4 py-2 rounded-full text-[10px] font-black uppercase border transition-colors bg-[#c19101] border-[#c19101] text-black" :class="isSelectedCategory('Todos') ? 'bg-[#c19101] border-[#c19101] text-black' : 'bg-white/10 border-white/10 text-white'">
+            <button @click="setActiveCategory('Todos')" class="whitespace-nowrap px-4 py-2 rounded-full text-[10px] font-black uppercase border transition-colors bg-[#2563eb] border-[#2563eb] text-white" :class="isSelectedCategory('Todos') ? 'bg-[#2563eb] border-[#2563eb] text-white' : 'bg-white/10 border-white/10 text-white'">
                 TUDO
             </button>
 
@@ -80,7 +80,7 @@
                 <button
                     @click="setActiveCategory(cat)"
                     class="whitespace-nowrap px-4 py-2 rounded-full text-[10px] font-black uppercase border transition-colors"
-                    :class="isSelectedCategory(cat) ? 'bg-[#c19101] border-[#c19101] text-black' : 'bg-white/10 border-white/10 text-white'"
+                    :class="isSelectedCategory(cat) ? 'bg-[#2563eb] border-[#2563eb] text-white' : 'bg-white/10 border-white/10 text-white'"
                     x-text="cat"
                 ></button>
             </template>
@@ -101,7 +101,7 @@
                     <template x-for="cat in visibleCategories" :key="cat">
                         <!-- Só mostra a seção se a categoria for a ativa ou se "Todos" estiver selecionado -->
                         <section class="mb-12">
-                            <div class="flex items-center justify-between mb-6 border-b-2 border-[#c19101]/20 pb-2">
+                            <div class="flex items-center justify-between mb-6 border-b-2 border-[#2563eb]/20 pb-2">
                                 <h3 class="text-2xl font-black uppercase italic text-slate-800" x-text="cat"></h3> 
                             </div>
 
@@ -118,7 +118,7 @@
                                                 <p class="text-lg lg:text-xl text-center font-black" :class="(p.unavailable || false) ? 'text-slate-400' : 'text-emerald-600'" x-text="formatPrice(p.price)"></p>
                                             </div>
                                         </div>
-                                        <button class="w-full py-2 mt-2 rounded-lg text-sm font-black uppercase" :class="(p.unavailable || false) ? 'bg-slate-300 text-slate-500 cursor-not-allowed' : 'bg-[#c19101] text-white'" :disabled="p.unavailable || false" @click.stop="!(p.unavailable || false) &amp;&amp; openProduct(p)" x-text="(p.unavailable || false) ? 'INDISPONÍVEL' : 'VER PRODUTO'">
+                                        <button class="w-full py-2 mt-2 rounded-lg text-sm font-black uppercase" :class="(p.unavailable || false) ? 'bg-slate-300 text-slate-500 cursor-not-allowed' : 'bg-[#2563eb] text-white'" :disabled="p.unavailable || false" @click.stop="!(p.unavailable || false) &amp;&amp; openProduct(p)" x-text="(p.unavailable || false) ? 'INDISPONÍVEL' : 'VER PRODUTO'">
                                         </button>
                                     </div>
                                 </template>
@@ -128,17 +128,17 @@
                 </div>
  
                 <div class="p-5 max-w-6xl mx-auto relative group" x-show="showFeedbacks">
-                    <div class="flex items-center justify-between mb-6 border-b-2 border-[#c19101]/20 pb-2">
+                    <div class="flex items-center justify-between mb-6 border-b-2 border-[#2563eb]/20 pb-2">
                         <h3 class="text-2xl font-black uppercase italic text-slate-800">FEEDBACKS</h3>
-                        <span class="bg-[#c19101] text-white text-[10px] font-bold px-3 py-1 rounded-full lg:hidden">Arraste para o lado</span>
+                        <span class="bg-[#2563eb] text-white text-[10px] font-bold px-3 py-1 rounded-full lg:hidden">Arraste para o lado</span>
                     </div>
                     
                     <!-- Botões de Navegação (Desktop) -->
                     <div class="hidden lg:flex">
-                        <button @click="$refs.feedbackScroll.scrollBy({ left: -400, behavior: 'smooth' })" class="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-black/50 text-white w-12 h-12 rounded-full hover:bg-[#c19101] transition-colors shadow-xl items-center justify-center">
+                        <button @click="$refs.feedbackScroll.scrollBy({ left: -400, behavior: 'smooth' })" class="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-black/50 text-white w-12 h-12 rounded-full hover:bg-[#2563eb] transition-colors shadow-xl items-center justify-center">
                             <i class="fas fa-chevron-left"></i>
                         </button>
-                        <button @click="$refs.feedbackScroll.scrollBy({ left: 400, behavior: 'smooth' })" class="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-black/50 text-white w-12 h-12 rounded-full hover:bg-[#c19101] transition-colors shadow-xl items-center justify-center">
+                        <button @click="$refs.feedbackScroll.scrollBy({ left: 400, behavior: 'smooth' })" class="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-black/50 text-white w-12 h-12 rounded-full hover:bg-[#2563eb] transition-colors shadow-xl items-center justify-center">
                             <i class="fas fa-chevron-right"></i>
                         </button>
                     </div>
@@ -234,19 +234,19 @@
                 <template x-if="cart.length === 0">
                     <div class="text-center py-20">
                         <p class="text-slate-400 font-black text-[10px] uppercase">Cesta vazia</p>
-                        <button @click="view = 'home'" class="mt-4 bg-[#c19101] px-8 py-3 rounded-full font-black text-[10px] uppercase">Ver Catálogo</button>
+                        <button @click="view = 'home'" class="mt-4 bg-[#2563eb] px-8 py-3 rounded-full font-black text-[10px] uppercase text-white">Ver Catálogo</button>
                     </div>
                 </template><div class="text-center py-20">
                         <p class="text-slate-400 font-black text-[10px] uppercase">Cesta vazia</p>
-                        <button @click="view = 'home'" class="mt-4 bg-[#c19101] px-8 py-3 rounded-full font-black text-[10px] uppercase">Ver Catálogo</button>
+                        <button @click="view = 'home'" class="mt-4 bg-[#2563eb] px-8 py-3 rounded-full font-black text-[10px] uppercase text-white">Ver Catálogo</button>
                     </div>
             </div>
         </main>
     </div>
     <nav class="tab-bar fixed bottom-0 left-0 right-0 z-[200] lg:hidden px-6 py-3 border-t border-white/5 flex justify-around items-center">
-        <button @click="view = 'home'; activeCategory = 'Todos'" class="flex flex-col items-center text-[#c19101]" :class="view === 'home' ? 'text-[#c19101]' : 'text-white/40'">
-            <div class="w-10 h-10 bg-[#c19101] rounded-full flex items-center justify-center -mt-8 border-4 border-[#010101] text-black font-black"><i class="fas fa-house"></i></div>
-            <span class="text-[1rem] font-black italic uppercase text-[#c19101] tracking-tighter">Home</span>
+        <button @click="view = 'home'; activeCategory = 'Todos'" class="flex flex-col items-center text-[#2563eb]" :class="view === 'home' ? 'text-[#2563eb]' : 'text-white/40'">
+            <div class="w-10 h-10 bg-[#2563eb] rounded-full flex items-center justify-center -mt-8 border-4 border-[#010101] text-white font-black"><i class="fas fa-house"></i></div>
+            <span class="text-[1rem] font-black italic uppercase text-[#2563eb] tracking-tighter">Home</span>
 
         </button>
         <button @click="window.open('https://chat.whatsapp.com/IKip1Wvw0DyHqDdPRHsT1G')" class="flex flex-col items-center">
@@ -274,11 +274,11 @@
                             </p>
                         </div>
                     </div>
-                    <button @click="!(activeProduct.unavailable || false) &amp;&amp; addToCart(activeProduct); activeProduct = null" class="flex-1 py-4 rounded-xl font-black text-[24px] italic uppercase" :class="(activeProduct.unavailable || false) ? 'bg-slate-300 text-slate-500 cursor-not-allowed' : 'bg-[#c19101] text-white'" :disabled="activeProduct.unavailable || false" x-text="(activeProduct.unavailable || false) ? 'INDISPONÍVEL' : 'Comprar'">
+                    <button @click="!(activeProduct.unavailable || false) &amp;&amp; addToCart(activeProduct); activeProduct = null" class="flex-1 py-4 rounded-xl font-black text-[24px] italic uppercase" :class="(activeProduct.unavailable || false) ? 'bg-slate-300 text-slate-500 cursor-not-allowed' : 'bg-[#2563eb] text-white'" :disabled="activeProduct.unavailable || false" x-text="(activeProduct.unavailable || false) ? 'INDISPONÍVEL' : 'Comprar'">
                     </button>
                 </div>
                 
-                <button @click="activeProduct = null" class="md:hidden mb-4 w-full py-4 rounded-xl font-black text-[18px] mt-[3rem] italic uppercase bg-white text-[#c19101] border-2 border-[#c19101]">Voltar para a lista</button>
+                <button @click="activeProduct = null" class="md:hidden mb-4 w-full py-4 rounded-xl font-black text-[18px] mt-[3rem] italic uppercase bg-white text-[#2563eb] border-2 border-[#2563eb]">Voltar para a lista</button>
                 
                 <div class="mt-6 pt-6 border-t border-slate-100">
                     <p class="text-sm font-black text-slate-600 mb-4 text-center uppercase">Compartilhar Produto</p>
@@ -351,7 +351,7 @@
                 addToCart(p) { this.cart.push(p); this.view = 'cart'; },
                 removeFromCart(i) { this.cart.splice(i, 1); },
                 checkoutWhatsApp() {
-                    let msg = "*WM IMPORTS - NOVO PEDIDO*\n\n";
+                    let msg = "*legalpharmapy - NOVO PEDIDO*\n\n";
                     this.cart.forEach(i => msg += `• ${i.name} (${this.formatPrice(i.price)})\n`);
                     msg += `\n*Total: ${this.formatPrice(this.cartTotal)}*`;
                     window.open(`https://wa.me/5511971280942?text=${encodeURIComponent(msg)}`);
@@ -364,7 +364,7 @@
                                 const file = new File([blob], 'product.jpg', { type: blob.type });
                                 const shareData = {
                                     title: this.activeProduct.name,
-                                    text: `${this.activeProduct.name} - ${this.formatPrice(this.activeProduct.price)}\n\n${this.activeProduct.description}\n\n🔥 WM Imports 🔥`,
+                                    text: `${this.activeProduct.name} - ${this.formatPrice(this.activeProduct.price)}\n\n${this.activeProduct.description}\n\n🔥 legalpharmapy 🔥`,
                                     url: window.location.href,
                                     files: [file]
                                 };
@@ -388,12 +388,12 @@
                         this.activeProduct.image : 
                         baseUrl + this.activeProduct.image;
                     
-                    const text = `🛒 *${this.activeProduct.name}*\n\n💰 ${this.formatPrice(this.activeProduct.price)}\n\n📝 ${this.activeProduct.description}\n\n🔥 WM Imports - www.wmimports.com.py\n\n📱 ${baseUrl}`;
+                    const text = `🛒 *${this.activeProduct.name}*\n\n💰 ${this.formatPrice(this.activeProduct.price)}\n\n📝 ${this.activeProduct.description}\n\n🔥 legalpharmapy - www.wmimports.com.py\n\n📱 ${baseUrl}`;
                     window.open(`https://wa.me/?text=${encodeURIComponent(text)}`);
                 },
                 shareFacebook() {
                     const url = window.location.href;
-                    const text = `${this.activeProduct.name} - WM Imports`;
+                    const text = `${this.activeProduct.name} - legalpharmapy`;
                     window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&quote=${encodeURIComponent(text)}`);
                 }, 
                 copyLink() {
