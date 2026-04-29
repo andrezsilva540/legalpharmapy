@@ -69,7 +69,7 @@
         }
     </script>
 </head>
-<body x-data="wmStore()" class="font-sans text-slate-900 pb-20 lg:pb-10">
+<body x-data="wmStore()" class="font-sans text-slate-900">
     <button @click="view = 'cart'; window.scrollTo({ top: 0, behavior: 'smooth' })" class="fab-cart w-16 h-16 bg-[#2563eb] text-white rounded-full flex items-center justify-center transition-transform active:scale-95 animate__animated animate__bounceIn">
         <i class="fas fa-shopping-cart text-xl"></i>
         <span x-show="cart.length &gt; 0" class="absolute top-0 right-0 bg-red-600 text-white text-[11px] font-black w-6 h-6 rounded-full flex items-center justify-center border-2 border-white" x-text="cart.length" style="display: none;">0</span>
@@ -253,6 +253,19 @@
                     </div>
             </div>
         </main>
+        
+        <!-- Footer Desktop -->
+        <footer class="hidden lg:block bg-[#010101] py-8 border-t border-white/10">
+            <div class="max-w-6xl mx-auto px-5">
+                <div class="flex flex-col items-center">
+                    <img src="wmimports.png" class="w-40 mb-4" alt="Legal PharmaPY">
+                    <p class="text-white/60 text-sm mb-4">© 2026 Legal PharmaPY. Todos os direitos reservados.</p>
+                    <a href="politica-privacidade.html" class="text-white/40 hover:text-white text-sm font-black uppercase transition-colors">
+                        <i class="fas fa-shield-alt mr-2"></i>Política de Privacidade
+                    </a>
+                </div>
+            </div>
+        </footer>
     </div>
     <nav class="tab-bar fixed bottom-0 left-0 right-0 z-[200] lg:hidden px-6 py-3 border-t border-white/5 flex justify-around items-center">
         <button @click="view = 'home'; activeCategory = 'Todos'" class="flex flex-col items-center text-[#2563eb]" :class="view === 'home' ? 'text-[#2563eb]' : 'text-white/40'">
