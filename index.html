@@ -1,10 +1,14 @@
-<html lang="pt-br"><head>
+<html lang="pt-br">
+
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    
+
     <title>Legal PharmaPY | Produtos Originais | Garantia Total</title>
-    <meta name="description" content="A legalpharmapy oferece os melhores produtos originais de saúde e emagrecimento com garantia total. Atendimento 24 horas no Brás, SP. Qualidade e procedência garantida.">
-    <meta name="keywords" content="legalpharmapy, produtos originais, garantia total, emagrecimento Brás, suplementos 24 horas, produtos naturais SP, saúde e bem-estar Brás">
+    <meta name="description"
+        content="A legalpharmapy oferece os melhores produtos originais de saúde e emagrecimento com garantia total. Atendimento 24 horas no Brás, SP. Qualidade e procedência garantida.">
+    <meta name="keywords"
+        content="legalpharmapy, produtos originais, garantia total, emagrecimento Brás, suplementos 24 horas, produtos naturais SP, saúde e bem-estar Brás">
     <meta name="author" content="legalpharmapy">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://legalpharmapy.com/">
@@ -12,7 +16,8 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://legalpharmapy.com/">
     <meta property="og:title" content="legalpharmapy | Produtos Originais | Garantia Total">
-    <meta property="og:description" content="Especialista em saúde e emagrecimento. Atendimento 24h no Brás com garantia total de originalidade.">
+    <meta property="og:description"
+        content="Especialista em saúde e emagrecimento. Atendimento 24h no Brás com garantia total de originalidade.">
     <meta property="og:image" content="https://legalpharmapy.com/wmimports.png">
 
     <script type="application/ld+json">
@@ -58,7 +63,7 @@
     <link rel="icon" href="fav.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
-    
+
     <!-- Vercel Web Analytics -->
     <script>
         if (window.location.protocol !== 'file:') {
@@ -69,10 +74,14 @@
         }
     </script>
 </head>
+
 <body x-data="wmStore()" class="font-sans text-slate-900">
-    <button @click="view = 'cart'; window.scrollTo({ top: 0, behavior: 'smooth' })" class="fab-cart w-16 h-16 bg-[#2563eb] text-white rounded-full flex items-center justify-center transition-transform active:scale-95 animate__animated animate__bounceIn">
+    <button @click="view = 'cart'; window.scrollTo({ top: 0, behavior: 'smooth' })"
+        class="fab-cart w-16 h-16 bg-[#2563eb] text-white rounded-full flex items-center justify-center transition-transform active:scale-95 animate__animated animate__bounceIn">
         <i class="fas fa-shopping-cart text-xl"></i>
-        <span x-show="cart.length &gt; 0" class="absolute top-0 right-0 bg-red-600 text-white text-[11px] font-black w-6 h-6 rounded-full flex items-center justify-center border-2 border-white" x-text="cart.length" style="display: none;">0</span>
+        <span x-show="cart.length &gt; 0"
+            class="absolute top-0 right-0 bg-red-600 text-white text-[11px] font-black w-6 h-6 rounded-full flex items-center justify-center border-2 border-white"
+            x-text="cart.length" style="display: none;">0</span>
     </button>
 
     <div class="animate-urgent text-white text-[10px] font-black py-1.5 text-center uppercase sticky top-0 z-[100]">
@@ -80,31 +89,35 @@
     </div>
 
     <div class="flex flex-col min-h-screen">
-        <nav class="sticky top-[28px] z-[90] bg-[#010101] lg:justify-center border-b border-white/10 flex items-center px-4 py-3 space-x-3 overflow-x-auto no-scrollbar">
-            <div class="flex-shrink-0 font-black italic text-lg text-white mr-4"><img class="w-[9rem] lg:hidden" src="wmimports.png"></div>
-            
-            <button @click="setActiveCategory('Todos')" class="whitespace-nowrap px-4 py-2 rounded-full text-[10px] font-black uppercase border transition-colors bg-[#2563eb] border-[#2563eb] text-white" :class="isSelectedCategory('Todos') ? 'bg-[#2563eb] border-[#2563eb] text-white' : 'bg-white/10 border-white/10 text-white'">
+        <nav
+            class="sticky top-[28px] z-[90] bg-[#010101] lg:justify-center border-b border-white/10 flex items-center px-4 py-3 space-x-3 overflow-x-auto no-scrollbar">
+            <div class="flex-shrink-0 font-black italic text-lg text-white mr-4"><img class="w-[9rem] lg:hidden"
+                    src="wmimports.png"></div>
+
+            <button @click="setActiveCategory('Todos')"
+                class="whitespace-nowrap px-4 py-2 rounded-full text-[10px] font-black uppercase border transition-colors bg-[#2563eb] border-[#2563eb] text-white"
+                :class="isSelectedCategory('Todos') ? 'bg-[#2563eb] border-[#2563eb] text-white' : 'bg-white/10 border-white/10 text-white'">
                 TUDO
             </button>
 
             <template x-for="cat in categories" :key="'nav-' + cat">
-                <button
-                    @click="setActiveCategory(cat)"
+                <button @click="setActiveCategory(cat)"
                     class="whitespace-nowrap px-4 py-2 rounded-full text-[10px] font-black uppercase border transition-colors"
                     :class="isSelectedCategory(cat) ? 'bg-[#2563eb] border-[#2563eb] text-white' : 'bg-white/10 border-white/10 text-white'"
-                    x-text="cat"
-                ></button>
+                    x-text="cat"></button>
             </template>
         </nav>
 
         <main class="flex-1 w-full">
             <div x-show="view === 'home'" class="animate__animated animate__fadeIn">
                 <!-- Banner -->
-                <div class="relative w-full h-[220px] lg:h-[450px] overflow-hidden bg-[#010101]" x-data="{ active: 0, count: 1 }" x-init="if(count &gt; 0) setInterval(() =&gt; active = (active + 1) % count, 5000)">
-                                            <div x-show="active === 0" class="absolute inset-0 bg-[#010101]">
-                            <img src="img/1773689262_69b859ae53f27.png" class="w-full h-full object-contain">
-                        </div>
-                                    </div>
+                <div class="relative w-full h-[220px] lg:h-[450px] overflow-hidden bg-[#010101]"
+                    x-data="{ active: 0, count: 1 }"
+                    x-init="if(count &gt; 0) setInterval(() =&gt; active = (active + 1) % count, 5000)">
+                    <div x-show="active === 0" class="absolute inset-0 bg-[#010101]">
+                        <img src="img/1773689262_69b859ae53f27.png" class="w-full h-full object-contain">
+                    </div>
+                </div>
 
                 <!-- SEÇÕES POR CATEGORIA -->
                 <div class="max-w-6xl mx-auto px-5 py-8">
@@ -113,107 +126,141 @@
                         <!-- Só mostra a seção se a categoria for a ativa ou se "Todos" estiver selecionado -->
                         <section class="mb-12">
                             <div class="flex items-center justify-between mb-6 border-b-2 border-[#2563eb]/20 pb-2">
-                                <h3 class="text-2xl font-black uppercase italic text-slate-800" x-text="cat"></h3> 
+                                <h3 class="text-2xl font-black uppercase italic text-slate-800" x-text="cat"></h3>
                             </div>
 
                             <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
                                 <template x-for="p in getProductsByCategory(cat)" :key="p.sku">
-                                    <div class="bg-white rounded-2xl p-3 border shadow-sm active:scale-95 transition-transform cursor-pointer flex flex-col h-full" :class="(p.unavailable || false) ? 'opacity-50' : ''" @click="!(p.unavailable || false) &amp;&amp; openProduct(p)">
-                                        <div class="bg-slate-50 rounded-xl aspect-square flex items-center justify-center p-2 mb-2 overflow-hidden" :class="(p.unavailable || false) ? 'grayscale' : ''">
+                                    <div class="bg-white rounded-2xl p-3 border shadow-sm active:scale-95 transition-transform cursor-pointer flex flex-col h-full"
+                                        :class="(p.unavailable || false) ? 'opacity-50' : ''"
+                                        @click="!(p.unavailable || false) &amp;&amp; openProduct(p)">
+                                        <div class="bg-slate-50 rounded-xl aspect-square flex items-center justify-center p-2 mb-2 overflow-hidden"
+                                            :class="(p.unavailable || false) ? 'grayscale' : ''">
                                             <img :src="p.image" :alt="p.name" class="max-h-full object-contain">
                                         </div>
                                         <div class="flex flex-col flex-1 items-center justify-center py-2">
-                                            <h4 class="text-sm lg:text-base text-center opacity-80 uppercase font-bold mb-2 line-clamp-2" x-text="p.name"></h4>
+                                            <h4 class="text-sm lg:text-base text-center opacity-80 uppercase font-bold mb-2 line-clamp-2"
+                                                x-text="p.name"></h4>
                                             <div class="flex flex-col items-center">
-                                                <p class="italic text-center text-[10px] lg:text-xs line-through opacity-50" x-text="'de ' + formatPrice(p.price * 1.2)"></p>
-                                                <p class="text-lg lg:text-xl text-center font-black" :class="(p.unavailable || false) ? 'text-slate-400' : 'text-emerald-600'" x-text="formatPrice(p.price)"></p>
+                                                <p class="italic text-center text-[10px] lg:text-xs line-through opacity-50"
+                                                    x-text="'de ' + formatPrice(p.price * 1.2)"></p>
+                                                <p class="text-lg lg:text-xl text-center font-black"
+                                                    :class="(p.unavailable || false) ? 'text-slate-400' : 'text-emerald-600'"
+                                                    x-text="formatPrice(p.price)"></p>
                                             </div>
                                         </div>
-                                        <button class="w-full py-2 mt-2 rounded-lg text-sm font-black uppercase" :class="(p.unavailable || false) ? 'bg-slate-300 text-slate-500 cursor-not-allowed' : 'bg-[#2563eb] text-white'" :disabled="p.unavailable || false" @click.stop="!(p.unavailable || false) &amp;&amp; openProduct(p)" x-text="(p.unavailable || false) ? 'INDISPONÍVEL' : 'VER PRODUTO'">
+                                        <button class="w-full py-2 mt-2 rounded-lg text-sm font-black uppercase"
+                                            :class="(p.unavailable || false) ? 'bg-slate-300 text-slate-500 cursor-not-allowed' : 'bg-[#2563eb] text-white'"
+                                            :disabled="p.unavailable || false"
+                                            @click.stop="!(p.unavailable || false) &amp;&amp; openProduct(p)"
+                                            x-text="(p.unavailable || false) ? 'INDISPONÍVEL' : 'VER PRODUTO'">
                                         </button>
                                     </div>
                                 </template>
                             </div>
-                        </section> 
+                        </section>
                     </template>
                 </div>
- 
+
                 <div class="p-5 max-w-6xl mx-auto relative group" x-show="showFeedbacks">
                     <div class="flex items-center justify-between mb-6 border-b-2 border-[#2563eb]/20 pb-2">
                         <h3 class="text-2xl font-black uppercase italic text-slate-800">FEEDBACKS</h3>
-                        <span class="bg-[#2563eb] text-white text-[10px] font-bold px-3 py-1 rounded-full lg:hidden">Arraste para o lado</span>
+                        <span
+                            class="bg-[#2563eb] text-white text-[10px] font-bold px-3 py-1 rounded-full lg:hidden">Arraste
+                            para o lado</span>
                     </div>
-                    
+
                     <!-- Botões de Navegação (Desktop) -->
                     <div class="hidden lg:flex">
-                        <button @click="$refs.feedbackScroll.scrollBy({ left: -400, behavior: 'smooth' })" class="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-black/50 text-white w-12 h-12 rounded-full hover:bg-[#2563eb] transition-colors shadow-xl items-center justify-center">
+                        <button @click="$refs.feedbackScroll.scrollBy({ left: -400, behavior: 'smooth' })"
+                            class="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-black/50 text-white w-12 h-12 rounded-full hover:bg-[#2563eb] transition-colors shadow-xl items-center justify-center">
                             <i class="fas fa-chevron-left"></i>
                         </button>
-                        <button @click="$refs.feedbackScroll.scrollBy({ left: 400, behavior: 'smooth' })" class="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-black/50 text-white w-12 h-12 rounded-full hover:bg-[#2563eb] transition-colors shadow-xl items-center justify-center">
+                        <button @click="$refs.feedbackScroll.scrollBy({ left: 400, behavior: 'smooth' })"
+                            class="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-black/50 text-white w-12 h-12 rounded-full hover:bg-[#2563eb] transition-colors shadow-xl items-center justify-center">
                             <i class="fas fa-chevron-right"></i>
                         </button>
                     </div>
 
                     <!-- Container com Scroll -->
                     <div x-ref="feedbackScroll" class="flex space-x-4 overflow-x-auto no-scrollbar pb-5 scroll-smooth">
-                                                <div class="flex-none h-96 rounded-2xl overflow-hidden border border-slate-200 shadow-md">
-                            <img src="prints/1773699971_69b8838390aaa.jpg" class="h-full w-auto object-contain select-none pointer-events-none">
+                        <div class="flex-none h-96 rounded-2xl overflow-hidden border border-slate-200 shadow-md">
+                            <img src="prints/1773699971_69b8838390aaa.jpg"
+                                class="h-full w-auto object-contain select-none pointer-events-none">
                         </div>
-                                                <div class="flex-none h-96 rounded-2xl overflow-hidden border border-slate-200 shadow-md">
-                            <img src="prints/1773699994_69b8839a461f3.jpg" class="h-full w-auto object-contain select-none pointer-events-none">
+                        <div class="flex-none h-96 rounded-2xl overflow-hidden border border-slate-200 shadow-md">
+                            <img src="prints/1773699994_69b8839a461f3.jpg"
+                                class="h-full w-auto object-contain select-none pointer-events-none">
                         </div>
-                                                <div class="flex-none h-96 rounded-2xl overflow-hidden border border-slate-200 shadow-md">
-                            <img src="prints/1773700010_69b883aa7fc76.jpg" class="h-full w-auto object-contain select-none pointer-events-none">
+                        <div class="flex-none h-96 rounded-2xl overflow-hidden border border-slate-200 shadow-md">
+                            <img src="prints/1773700010_69b883aa7fc76.jpg"
+                                class="h-full w-auto object-contain select-none pointer-events-none">
                         </div>
-                                                <div class="flex-none h-96 rounded-2xl overflow-hidden border border-slate-200 shadow-md">
-                            <img src="prints/1773700046_69b883ceb2267.jpg" class="h-full w-auto object-contain select-none pointer-events-none">
+                        <div class="flex-none h-96 rounded-2xl overflow-hidden border border-slate-200 shadow-md">
+                            <img src="prints/1773700046_69b883ceb2267.jpg"
+                                class="h-full w-auto object-contain select-none pointer-events-none">
                         </div>
-                                                <div class="flex-none h-96 rounded-2xl overflow-hidden border border-slate-200 shadow-md">
-                            <img src="prints/1773700090_69b883fa68da8.jpg" class="h-full w-auto object-contain select-none pointer-events-none">
+                        <div class="flex-none h-96 rounded-2xl overflow-hidden border border-slate-200 shadow-md">
+                            <img src="prints/1773700090_69b883fa68da8.jpg"
+                                class="h-full w-auto object-contain select-none pointer-events-none">
                         </div>
-                                                <div class="flex-none h-96 rounded-2xl overflow-hidden border border-slate-200 shadow-md">
-                            <img src="prints/1773864102_69bb04a641b02.jpg" class="h-full w-auto object-contain select-none pointer-events-none">
+                        <div class="flex-none h-96 rounded-2xl overflow-hidden border border-slate-200 shadow-md">
+                            <img src="prints/1773864102_69bb04a641b02.jpg"
+                                class="h-full w-auto object-contain select-none pointer-events-none">
                         </div>
-                                                <div class="flex-none h-96 rounded-2xl overflow-hidden border border-slate-200 shadow-md">
-                            <img src="prints/1773864107_69bb04ab370c7.jpg" class="h-full w-auto object-contain select-none pointer-events-none">
+                        <div class="flex-none h-96 rounded-2xl overflow-hidden border border-slate-200 shadow-md">
+                            <img src="prints/1773864107_69bb04ab370c7.jpg"
+                                class="h-full w-auto object-contain select-none pointer-events-none">
                         </div>
-                                                <div class="flex-none h-96 rounded-2xl overflow-hidden border border-slate-200 shadow-md">
-                            <img src="prints/1773864113_69bb04b16c77a.jpg" class="h-full w-auto object-contain select-none pointer-events-none">
+                        <div class="flex-none h-96 rounded-2xl overflow-hidden border border-slate-200 shadow-md">
+                            <img src="prints/1773864113_69bb04b16c77a.jpg"
+                                class="h-full w-auto object-contain select-none pointer-events-none">
                         </div>
-                                                <div class="flex-none h-96 rounded-2xl overflow-hidden border border-slate-200 shadow-md">
-                            <img src="prints/1773864118_69bb04b6a3efc.jpg" class="h-full w-auto object-contain select-none pointer-events-none">
+                        <div class="flex-none h-96 rounded-2xl overflow-hidden border border-slate-200 shadow-md">
+                            <img src="prints/1773864118_69bb04b6a3efc.jpg"
+                                class="h-full w-auto object-contain select-none pointer-events-none">
                         </div>
-                                                <div class="flex-none h-96 rounded-2xl overflow-hidden border border-slate-200 shadow-md">
-                            <img src="prints/photo_2026-03-12_12-22-11.jpg" class="h-full w-auto object-contain select-none pointer-events-none">
+                        <div class="flex-none h-96 rounded-2xl overflow-hidden border border-slate-200 shadow-md">
+                            <img src="prints/photo_2026-03-12_12-22-11.jpg"
+                                class="h-full w-auto object-contain select-none pointer-events-none">
                         </div>
-                                                <div class="flex-none h-96 rounded-2xl overflow-hidden border border-slate-200 shadow-md">
-                            <img src="prints/photo_2026-03-12_12-22-12.jpg" class="h-full w-auto object-contain select-none pointer-events-none">
+                        <div class="flex-none h-96 rounded-2xl overflow-hidden border border-slate-200 shadow-md">
+                            <img src="prints/photo_2026-03-12_12-22-12.jpg"
+                                class="h-full w-auto object-contain select-none pointer-events-none">
                         </div>
-                                                <div class="flex-none h-96 rounded-2xl overflow-hidden border border-slate-200 shadow-md">
-                            <img src="prints/photo_2026-03-12_12-22-13.jpg" class="h-full w-auto object-contain select-none pointer-events-none">
+                        <div class="flex-none h-96 rounded-2xl overflow-hidden border border-slate-200 shadow-md">
+                            <img src="prints/photo_2026-03-12_12-22-13.jpg"
+                                class="h-full w-auto object-contain select-none pointer-events-none">
                         </div>
-                                                <div class="flex-none h-96 rounded-2xl overflow-hidden border border-slate-200 shadow-md">
-                            <img src="prints/1773700140_69b8842ccdb07.jpeg" class="h-full w-auto object-contain select-none pointer-events-none">
+                        <div class="flex-none h-96 rounded-2xl overflow-hidden border border-slate-200 shadow-md">
+                            <img src="prints/1773700140_69b8842ccdb07.jpeg"
+                                class="h-full w-auto object-contain select-none pointer-events-none">
                         </div>
-                                                <div class="flex-none h-96 rounded-2xl overflow-hidden border border-slate-200 shadow-md">
-                            <img src="prints/1773700146_69b8843250837.jpeg" class="h-full w-auto object-contain select-none pointer-events-none">
+                        <div class="flex-none h-96 rounded-2xl overflow-hidden border border-slate-200 shadow-md">
+                            <img src="prints/1773700146_69b8843250837.jpeg"
+                                class="h-full w-auto object-contain select-none pointer-events-none">
                         </div>
-                                                <div class="flex-none h-96 rounded-2xl overflow-hidden border border-slate-200 shadow-md">
-                            <img src="prints/1773700151_69b8843779bd7.jpeg" class="h-full w-auto object-contain select-none pointer-events-none">
+                        <div class="flex-none h-96 rounded-2xl overflow-hidden border border-slate-200 shadow-md">
+                            <img src="prints/1773700151_69b8843779bd7.jpeg"
+                                class="h-full w-auto object-contain select-none pointer-events-none">
                         </div>
-                                                <div class="flex-none h-96 rounded-2xl overflow-hidden border border-slate-200 shadow-md">
-                            <img src="prints/1773700157_69b8843d5fdbd.jpeg" class="h-full w-auto object-contain select-none pointer-events-none">
+                        <div class="flex-none h-96 rounded-2xl overflow-hidden border border-slate-200 shadow-md">
+                            <img src="prints/1773700157_69b8843d5fdbd.jpeg"
+                                class="h-full w-auto object-contain select-none pointer-events-none">
                         </div>
-                                                <div class="flex-none h-96 rounded-2xl overflow-hidden border border-slate-200 shadow-md">
-                            <img src="prints/1773700171_69b8844bab6cb.jpeg" class="h-full w-auto object-contain select-none pointer-events-none">
+                        <div class="flex-none h-96 rounded-2xl overflow-hidden border border-slate-200 shadow-md">
+                            <img src="prints/1773700171_69b8844bab6cb.jpeg"
+                                class="h-full w-auto object-contain select-none pointer-events-none">
                         </div>
-                                                <div class="flex-none h-96 rounded-2xl overflow-hidden border border-slate-200 shadow-md">
-                            <img src="prints/1773700177_69b88451e7de8.jpeg" class="h-full w-auto object-contain select-none pointer-events-none">
+                        <div class="flex-none h-96 rounded-2xl overflow-hidden border border-slate-200 shadow-md">
+                            <img src="prints/1773700177_69b88451e7de8.jpeg"
+                                class="h-full w-auto object-contain select-none pointer-events-none">
                         </div>
-                                                <div class="flex-none h-96 rounded-2xl overflow-hidden border border-slate-200 shadow-md">
-                            <img src="prints/1773700327_69b884e757a15.jpeg" class="h-full w-auto object-contain select-none pointer-events-none">
+                        <div class="flex-none h-96 rounded-2xl overflow-hidden border border-slate-200 shadow-md">
+                            <img src="prints/1773700327_69b884e757a15.jpeg"
+                                class="h-full w-auto object-contain select-none pointer-events-none">
                         </div>
-                                            </div>
+                    </div>
                 </div>
             </div>
             <div x-show="view === 'cart'" class="p-5 animate__animated animate__fadeInUp" style="display: none;">
@@ -233,11 +280,16 @@
                         <div class="bg-app-dark text-white p-6 rounded-3xl mt-10">
                             <div class="flex justify-between items-center mb-6">
                                 <span class="text-xs font-black uppercase opacity-50">Total</span>
-                                <span class="text-2xl text-emerald-400 font-black" x-text="formatPrice(cartTotal)"></span>
+                                <span class="text-2xl text-emerald-400 font-black"
+                                    x-text="formatPrice(cartTotal)"></span>
                             </div>
                             <div class="grid grid-cols-1 gap-3">
-                                <button @click="checkoutWhatsApp()" class="w-full bg-[#25D366] text-white py-4 rounded-xl font-black uppercase">Comprar via WhatsApp</button>
-                                <button @click="view = 'home'" class="w-full bg-[#333333] border-2 border-white/20 text-white py-4 rounded-xl font-black uppercase hover:bg-white/5">Adicionar mais itens</button>
+                                <button @click="checkoutWhatsApp()"
+                                    class="w-full bg-[#25D366] text-white py-4 rounded-xl font-black uppercase">Comprar
+                                    via WhatsApp</button>
+                                <button @click="view = 'home'"
+                                    class="w-full bg-[#333333] border-2 border-white/20 text-white py-4 rounded-xl font-black uppercase hover:bg-white/5">Adicionar
+                                    mais itens</button>
                             </div>
                         </div>
                     </div>
@@ -245,79 +297,108 @@
                 <template x-if="cart.length === 0">
                     <div class="text-center py-20">
                         <p class="text-slate-400 font-black text-[10px] uppercase">Cesta vazia</p>
-                        <button @click="view = 'home'" class="mt-4 bg-[#2563eb] px-8 py-3 rounded-full font-black text-[10px] uppercase text-white">Ver Catálogo</button>
+                        <button @click="view = 'home'"
+                            class="mt-4 bg-[#2563eb] px-8 py-3 rounded-full font-black text-[10px] uppercase text-white">Ver
+                            Catálogo</button>
                     </div>
-                </template><div class="text-center py-20">
-                        <p class="text-slate-400 font-black text-[10px] uppercase">Cesta vazia</p>
-                        <button @click="view = 'home'" class="mt-4 bg-[#2563eb] px-8 py-3 rounded-full font-black text-[10px] uppercase text-white">Ver Catálogo</button>
-                    </div>
+                </template>
             </div>
         </main>
-        
+
         <!-- Footer Desktop -->
         <footer class="hidden lg:block bg-[#010101] py-8 border-t border-white/10">
             <div class="max-w-6xl mx-auto px-5">
                 <div class="flex flex-col items-center">
                     <img src="wmimports.png" class="w-40 mb-4" alt="Legal PharmaPY">
                     <p class="text-white/60 text-sm mb-4">© 2026 Legal PharmaPY. Todos os direitos reservados.</p>
-                    <a href="politica-privacidade.html" class="text-white/40 hover:text-white text-sm font-black uppercase transition-colors">
+                    <a href="politica-privacidade.html"
+                        class="text-white/40 hover:text-white text-sm font-black uppercase transition-colors">
                         <i class="fas fa-shield-alt mr-2"></i>Política de Privacidade
                     </a>
                 </div>
             </div>
         </footer>
     </div>
-    <nav class="tab-bar fixed bottom-0 left-0 right-0 z-[200] lg:hidden px-6 py-3 border-t border-white/5 flex justify-around items-center">
-        <button @click="view = 'home'; activeCategory = 'Todos'" class="flex flex-col items-center text-[#2563eb]" :class="view === 'home' ? 'text-[#2563eb]' : 'text-white/40'">
-            <div class="w-10 h-10 bg-[#2563eb] rounded-full flex items-center justify-center -mt-8 border-4 border-[#010101] text-white font-black"><i class="fas fa-house"></i></div>
+    <nav
+        class="tab-bar fixed bottom-0 left-0 right-0 z-[200] lg:hidden px-6 py-3 border-t border-white/5 flex justify-around items-center">
+        <button @click="view = 'home'; activeCategory = 'Todos'" class="flex flex-col items-center text-[#2563eb]"
+            :class="view === 'home' ? 'text-[#2563eb]' : 'text-white/40'">
+            <div
+                class="w-10 h-10 bg-[#2563eb] rounded-full flex items-center justify-center -mt-8 border-4 border-[#010101] text-white font-black">
+                <i class="fas fa-house"></i></div>
             <span class="text-[1rem] font-black italic uppercase text-[#2563eb] tracking-tighter">Home</span>
 
         </button>
-        <button @click="window.open('https://chat.whatsapp.com/Dq1IvBbKskB7gLU0xXY23n')" class="flex flex-col items-center">
-            <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center -mt-8 border-4 border-[#010101] text-black font-black"><i class="fab fa-whatsapp"></i></div>
+        <button @click="window.open('https://chat.whatsapp.com/Dq1IvBbKskB7gLU0xXY23n')"
+            class="flex flex-col items-center">
+            <div
+                class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center -mt-8 border-4 border-[#010101] text-black font-black">
+                <i class="fab fa-whatsapp"></i></div>
             <span class="text-[1rem] font-black italic uppercase text-green-500 tracking-tighter">Grupo VIP</span>
         </button>
         <a href="politica-privacidade.html" class="flex flex-col items-center text-white/40">
-            <div class="w-10 h-10 bg-slate-600 rounded-full flex items-center justify-center -mt-8 border-4 border-[#010101] text-white font-black"><i class="fas fa-shield-alt"></i></div>
+            <div
+                class="w-10 h-10 bg-slate-600 rounded-full flex items-center justify-center -mt-8 border-4 border-[#010101] text-white font-black">
+                <i class="fas fa-shield-alt"></i></div>
             <span class="text-[0.7rem] font-black italic uppercase text-white/40 tracking-tighter">Privacidade</span>
         </a>
     </nav>
     <template x-if="activeProduct">
-        <div @click="activeProduct = null" class="fixed inset-0 z-[500] flex items-end lg:items-center justify-center bg-black/90 p-0 lg:p-4" x-cloak="">
-            <div @click.stop="" class="bg-white w-full lg:max-w-2xl rounded-t-[2.5rem] lg:rounded-[2.5rem] lg:rounded-tr-[0] lg:rounded-br-[0] p-6 animate__animated animate__slideInUp max-h-[90vh] overflow-y-auto scrollbar-thin scrollbar-thumb-slate-300 scrollbar-track-transparent hover:scrollbar-thumb-slate-400">
+        <div @click="activeProduct = null"
+            class="fixed inset-0 z-[500] flex items-end lg:items-center justify-center bg-black/90 p-0 lg:p-4"
+            x-cloak="">
+            <div @click.stop=""
+                class="bg-white w-full lg:max-w-2xl rounded-t-[2.5rem] lg:rounded-[2.5rem] lg:rounded-tr-[0] lg:rounded-br-[0] p-6 animate__animated animate__slideInUp max-h-[90vh] overflow-y-auto scrollbar-thin scrollbar-thumb-slate-300 scrollbar-track-transparent hover:scrollbar-thumb-slate-400">
                 <div class="flex justify-between items-start mb-4">
-                    <span class="bg-emerald-100 text-emerald-700 px-2 py-1 rounded text-[8px] font-black uppercase" x-text="activeProduct.sku"></span>
-                    <button @click="activeProduct = null" class="text-slate-300 hover:text-black text-2xl">✕ FECHAR</button>
+                    <span class="bg-emerald-100 text-emerald-700 px-2 py-1 rounded text-[8px] font-black uppercase"
+                        x-text="activeProduct.sku"></span>
+                    <button @click="activeProduct = null" class="text-slate-300 hover:text-black text-2xl">✕
+                        FECHAR</button>
                 </div>
-                <img :src="activeProduct.image" class="w-[90%] max-w-[800px] h-auto max-h-[50vh] mx-auto object-contain mb-6">
+                <img :src="activeProduct.image"
+                    class="w-[90%] max-w-[800px] h-auto max-h-[50vh] mx-auto object-contain mb-6">
                 <h3 class="text-2xl font-black italic uppercase mb-2" x-text="activeProduct.name"></h3>
-                <p class="text-slate-500 font-bold leading-relaxed mb-6 whitespace-pre-line" x-text="activeProduct.description"></p>
+                <p class="text-slate-500 font-bold leading-relaxed mb-6 whitespace-pre-line"
+                    x-text="activeProduct.description"></p>
 
                 <div class="flex items-center justify-between gap-4 border-t pt-6">
                     <div class="flex flex-col">
-                        <p class="italic text-sm line-through opacity-50 mb-[-4px]" x-text="'de ' + formatPrice((1.05 + (Math.abs(activeProduct.price.toString().split('').reduce((a,b)=&gt;((a&lt;&lt;5)-a)+b.charCodeAt(0),0)) % 501) / 1000) * activeProduct.price)">
+                        <p class="italic text-sm line-through opacity-50 mb-[-4px]"
+                            x-text="'de ' + formatPrice((1.05 + (Math.abs(activeProduct.price.toString().split('').reduce((a,b)=&gt;((a&lt;&lt;5)-a)+b.charCodeAt(0),0)) % 501) / 1000) * activeProduct.price)">
                         </p>
                         <div class="flex items-baseline gap-1">
-                            <p class="text-[2rem] font-black leading-tight" :class="(activeProduct.unavailable || false) ? 'text-slate-400' : 'text-emerald-600'" x-text="formatPrice(activeProduct.price)">
+                            <p class="text-[2rem] font-black leading-tight"
+                                :class="(activeProduct.unavailable || false) ? 'text-slate-400' : 'text-emerald-600'"
+                                x-text="formatPrice(activeProduct.price)">
                             </p>
                         </div>
                     </div>
-                    <button @click="!(activeProduct.unavailable || false) &amp;&amp; addToCart(activeProduct); activeProduct = null" class="flex-1 py-4 rounded-xl font-black text-[24px] italic uppercase" :class="(activeProduct.unavailable || false) ? 'bg-slate-300 text-slate-500 cursor-not-allowed' : 'bg-[#2563eb] text-white'" :disabled="activeProduct.unavailable || false" x-text="(activeProduct.unavailable || false) ? 'INDISPONÍVEL' : 'Comprar'">
+                    <button
+                        @click="!(activeProduct.unavailable || false) &amp;&amp; addToCart(activeProduct); activeProduct = null"
+                        class="flex-1 py-4 rounded-xl font-black text-[24px] italic uppercase"
+                        :class="(activeProduct.unavailable || false) ? 'bg-slate-300 text-slate-500 cursor-not-allowed' : 'bg-[#2563eb] text-white'"
+                        :disabled="activeProduct.unavailable || false"
+                        x-text="(activeProduct.unavailable || false) ? 'INDISPONÍVEL' : 'Comprar'">
                     </button>
                 </div>
-                
-                <button @click="activeProduct = null" class="md:hidden mb-4 w-full py-4 rounded-xl font-black text-[18px] mt-[3rem] italic uppercase bg-white text-[#2563eb] border-2 border-[#2563eb]">Voltar para a lista</button>
-                
+
+                <button @click="activeProduct = null"
+                    class="md:hidden mb-4 w-full py-4 rounded-xl font-black text-[18px] mt-[3rem] italic uppercase bg-white text-[#2563eb] border-2 border-[#2563eb]">Voltar
+                    para a lista</button>
+
                 <div class="mt-6 pt-6 border-t border-slate-100">
                     <p class="text-sm font-black text-slate-600 mb-4 text-center uppercase">Compartilhar Produto</p>
                     <div class="flex justify-center gap-3">
-                        <button @click="shareWhatsApp()" class="bg-[#25D366] text-white w-12 h-12 rounded-full flex items-center justify-center hover:scale-110 transition-transform">
+                        <button @click="shareWhatsApp()"
+                            class="bg-[#25D366] text-white w-12 h-12 rounded-full flex items-center justify-center hover:scale-110 transition-transform">
                             <i class="fab fa-whatsapp text-xl"></i>
                         </button>
-                        <button @click="shareFacebook()" class="bg-[#1877F2] text-white w-12 h-12 rounded-full flex items-center justify-center hover:scale-110 transition-transform">
+                        <button @click="shareFacebook()"
+                            class="bg-[#1877F2] text-white w-12 h-12 rounded-full flex items-center justify-center hover:scale-110 transition-transform">
                             <i class="fab fa-facebook-f text-xl"></i>
                         </button>
-                        <button @click="copyLink()" class="bg-slate-600 text-white w-12 h-12 rounded-full flex items-center justify-center hover:scale-110 transition-transform">
+                        <button @click="copyLink()"
+                            class="bg-slate-600 text-white w-12 h-12 rounded-full flex items-center justify-center hover:scale-110 transition-transform">
                             <i class="fas fa-link text-xl"></i>
                         </button>
                     </div>
@@ -334,8 +415,8 @@
                 activeProduct: null,
                 cart: [],
                 products: [],
-                
-                categories: ["TIRZEPATIDA","RETATRUTIDE","PEPT\u00cdDEOS","ANAB\u00d3LICOS","OUTROS"],
+
+                categories: ["TIRZEPATIDA", "RETATRUTIDE", "PEPT\u00cdDEOS", "ANAB\u00d3LICOS", "OUTROS"],
 
                 async init() {
                     if (window.location.protocol === 'file:' && Array.isArray(window.WM_PRODUCTS)) {
@@ -375,23 +456,23 @@
                 get showFeedbacks() {
                     return this.activeCategory === 'Todos';
                 },
-                
+
                 getProductsByCategory(cat) {
                     return this.products.filter(p => p.category === cat);
                 },
-                 
+
                 get filteredProducts() {
                     if (this.activeCategory === 'Todos') return this.products;
                     return this.products.filter(p => p.category === this.activeCategory);
                 },
-                
+
                 formatPrice(val) {
                     return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(val);
                 },
                 get cartTotal() {
                     return this.cart.reduce((s, i) => s + i.price, 0);
                 },
-                openProduct(p) { 
+                openProduct(p) {
                     if (!(p.unavailable || false)) {
                         this.activeProduct = p;
                     }
@@ -405,7 +486,7 @@
                     window.open(`https://wa.me/595985411795?text=${encodeURIComponent(msg)}`);
                 },
                 shareWhatsApp() {
-                    if (navigator.share && navigator.canShare) { 
+                    if (navigator.share && navigator.canShare) {
                         fetch(this.activeProduct.image)
                             .then(response => response.blob())
                             .then(blob => {
@@ -416,14 +497,14 @@
                                     url: window.location.href,
                                     files: [file]
                                 };
-                                
+
                                 if (navigator.canShare(shareData)) {
                                     navigator.share(shareData);
-                                } else { 
+                                } else {
                                     this.fallbackShare();
                                 }
                             })
-                            .catch(() => { 
+                            .catch(() => {
                                 this.fallbackShare();
                             });
                     } else {
@@ -432,10 +513,10 @@
                 },
                 fallbackShare() {
                     const baseUrl = window.location.origin + window.location.pathname.replace(/\/[^\/]*$/, '/');
-                    const fullImageUrl = this.activeProduct.image.startsWith('http') ? 
-                        this.activeProduct.image : 
+                    const fullImageUrl = this.activeProduct.image.startsWith('http') ?
+                        this.activeProduct.image :
                         baseUrl + this.activeProduct.image;
-                    
+
                     const text = `🛒 *${this.activeProduct.name}*\n\n💰 ${this.formatPrice(this.activeProduct.price)}\n\n📝 ${this.activeProduct.description}\n\n🔥 legalpharmapy - www.wmimports.com.py\n\n📱 ${baseUrl}`;
                     window.open(`https://wa.me/?text=${encodeURIComponent(text)}`);
                 },
@@ -443,7 +524,7 @@
                     const url = window.location.href;
                     const text = `${this.activeProduct.name} - legalpharmapy`;
                     window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&quote=${encodeURIComponent(text)}`);
-                }, 
+                },
                 copyLink() {
                     const url = window.location.href;
                     navigator.clipboard.writeText(url).then(() => {
@@ -452,9 +533,9 @@
                         toast.className = 'fixed top-5 right-5 z-[110] p-4 rounded-2xl shadow-xl text-white font-black bg-emerald-500 animate__animated animate__fadeInDown';
                         toast.textContent = 'Link copiado!';
                         document.body.appendChild(toast);
-                        
+
                         this.activeProduct = null;
-                        
+
                         setTimeout(() => {
                             toast.classList.add('animate__fadeOutUp');
                             setTimeout(() => toast.remove(), 500);
@@ -465,4 +546,6 @@
         }
     </script>
 
-</body></html>
+</body>
+
+</html>
