@@ -284,6 +284,9 @@
                                     x-text="formatPrice(cartTotal)"></span>
                             </div>
                             <div class="grid grid-cols-1 gap-3">
+                                <button @click="checkoutExternal()" :disabled="checkoutLoading"
+                                    class="w-full bg-[#2563eb] text-white py-4 rounded-xl font-black uppercase disabled:opacity-60 disabled:cursor-not-allowed"
+                                    x-text="checkoutLoading ? 'Redirecionando...' : 'Finalizar compra'"></button>
                                 <button @click="checkoutWhatsApp()"
                                     class="w-full bg-[#25D366] text-white py-4 rounded-xl font-black uppercase">Comprar
                                     via WhatsApp</button>
@@ -291,6 +294,8 @@
                                     class="w-full bg-[#333333] border-2 border-white/20 text-white py-4 rounded-xl font-black uppercase">Adicionar
                                     mais itens</button>
                             </div>
+                            <p x-show="checkoutError" x-text="checkoutError" class="mt-4 text-sm text-red-300"
+                                style="display: none;"></p>
                         </div>
                     </div>
                 </template>
@@ -410,15 +415,21 @@
     <script>
         function wmStore() {
             return {
+                cartStorageKey: 'wm-cart',
+                checkoutEndpoint: 'https://api.newagepag.com.br/checkout/save-cart',
                 view: 'home',
                 activeCategory: 'Todos',
                 activeProduct: null,
                 cart: [],
                 products: [],
+                checkoutLoading: false,
+                checkoutError: '',
 
                 categories: ["TIRZEPATIDA", "RETATRUTIDE", "PEPT\u00cdDEOS", "ANAB\u00d3LICOS", "OUTROS"],
 
                 async init() {
+                    this.loadCart();
+
                     if (window.location.protocol === 'file:' && Array.isArray(window.WM_PRODUCTS)) {
                         this.products = window.WM_PRODUCTS;
                         return;
@@ -436,6 +447,222 @@
                         console.error('Erro ao carregar produtos:', error);
                         this.products = Array.isArray(window.WM_PRODUCTS) ? window.WM_PRODUCTS : [];
                     }
+                },
+
+                loadCart() {
+                    try {
+                        const savedCart = localStorage.getItem(this.cartStorageKey);
+                        const parsedCart = savedCart ? JSON.parse(savedCart) : [];
+                        this.cart = Array.isArray(parsedCart) ? parsedCart : [];
+                    } catch (error) {
+                        console.error('Erro ao carregar carrinho:', error);
+                        this.cart = [];
+                    }
+                },
+
+                saveCart() {
+                    localStorage.setItem(this.cartStorageKey, JSON.stringify(this.cart));
+                },
+
+                hashString(value) {
+                    const input = String(value ?? '');
+                    let hash = 0;
+
+                    for (let index = 0; index < input.length; index += 1) {
+                        hash = ((hash << 5) - hash) + input.charCodeAt(index);
+                        hash |= 0;
+                    }
+
+                    return Math.abs(hash);
+                },
+
+                resolveNumericIdentifier(value, fallbackSeed) {
+                    const rawValue = String(value ?? '').trim();
+
+                    if (/^\d+$/.test(rawValue)) {
+                        return Number.parseInt(rawValue, 10);
+                    }
+
+                    return this.hashString(fallbackSeed || rawValue || Date.now());
+                },
+
+                toCents(value) {
+                    const amount = Number(value);
+                    return Math.round((Number.isFinite(amount) ? amount : 0) * 100);
+                },
+
+                resolveAbsoluteImageUrl(value) {
+                    const rawValue = String(value ?? '').trim();
+
+                    if (!rawValue) {
+                        return '';
+                    }
+
+                    if (/^https?:\/\//i.test(rawValue)) {
+                        return rawValue;
+                    }
+
+                    return new URL(rawValue, window.location.origin).toString();
+                },
+
+                buildFeaturedImagePayload(item) {
+                    const imageUrl = this.resolveAbsoluteImageUrl(item?.image);
+
+                    if (!imageUrl) {
+                        return null;
+                    }
+
+                    return {
+                        aspect_ratio: 1,
+                        alt: String(item?.name || 'Produto'),
+                        height: 500,
+                        url: imageUrl,
+                        width: 500
+                    };
+                },
+
+                getCookie(name) {
+                    const escapedName = name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                    const match = document.cookie.match(new RegExp(`(?:^|; )${escapedName}=([^;]*)`));
+                    return match ? decodeURIComponent(match[1]) : '';
+                },
+
+                getCheckoutUrlWithTracking(url) {
+                    if (!url) return url;
+
+                    try {
+                        const checkoutUrl = new URL(url, window.location.origin);
+                        const currentUrl = new URL(window.location.href);
+                        const paramsToForward = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'fbclid', 'gclid'];
+
+                        paramsToForward.forEach((param) => {
+                            const value = currentUrl.searchParams.get(param);
+                            if (value) {
+                                checkoutUrl.searchParams.set(param, value);
+                            }
+                        });
+
+                        const gaCookie = this.getCookie('_ga');
+                        if (gaCookie) {
+                            checkoutUrl.searchParams.set('_ga', gaCookie);
+                        }
+
+                        return checkoutUrl.href;
+                    } catch (error) {
+                        console.error('Erro ao montar URL do checkout:', error);
+                        return url;
+                    }
+                },
+
+                getGroupedCartItems() {
+                    const groupedItems = new Map();
+
+                    this.cart.forEach((item) => {
+                        const existingItem = groupedItems.get(item.sku);
+                        const unitPrice = Number(item.price) || 0;
+
+                        if (existingItem) {
+                            existingItem.quantity += 1;
+                            existingItem.line_price = this.toCents(unitPrice) * existingItem.quantity;
+                            existingItem.original_line_price = existingItem.line_price;
+                            existingItem.final_line_price = existingItem.line_price;
+                            return;
+                        }
+
+                        groupedItems.set(item.sku, {
+                            ...item,
+                            quantity: 1
+                        });
+                    });
+
+                    return Array.from(groupedItems.values());
+                },
+
+                buildNewAgeCartItem(item) {
+                    const quantity = Math.max(1, Number.parseInt(String(item?.quantity ?? 1), 10) || 1);
+                    const unitPrice = Number(item?.price) || 0;
+                    const priceInCents = this.toCents(unitPrice);
+                    const identifierSeed = `${item?.sku || item?.name || 'produto'}:${item?.category || ''}`;
+                    const numericId = this.resolveNumericIdentifier(item?.sku, identifierSeed);
+                    const variantId = this.resolveNumericIdentifier(item?.sku, `${identifierSeed}:variant`);
+                    const productId = this.resolveNumericIdentifier(item?.sku, `${identifierSeed}:product`);
+                    const handle = String(item?.sku || item?.name || 'produto').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+                    const featuredImage = this.buildFeaturedImagePayload(item);
+                    const imageUrl = featuredImage?.url || '';
+                    const linePrice = priceInCents * quantity;
+
+                    return {
+                        id: numericId,
+                        properties: {},
+                        quantity,
+                        variant_id: variantId,
+                        key: `${numericId}:${this.hashString(`${identifierSeed}:${quantity}`)}`,
+                        title: String(item?.name || 'Produto'),
+                        price: priceInCents,
+                        original_price: priceInCents,
+                        presentment_price: unitPrice,
+                        discounted_price: priceInCents,
+                        line_price: linePrice,
+                        original_line_price: linePrice,
+                        total_discount: 0,
+                        discounts: [],
+                        sku: String(item?.sku || ''),
+                        grams: 1000,
+                        vendor: 'Legal PharmaPY',
+                        taxable: true,
+                        product_id: productId,
+                        product_has_only_default_variant: true,
+                        gift_card: false,
+                        final_price: priceInCents,
+                        final_line_price: linePrice,
+                        url: `/products/${handle}?variant=${variantId}`,
+                        featured_image: featuredImage,
+                        image: imageUrl,
+                        handle,
+                        requires_shipping: true,
+                        product_type: String(item?.category || ''),
+                        product_title: String(item?.name || 'Produto'),
+                        product_description: String(item?.description || ''),
+                        variant_title: null,
+                        variant_options: ['Default Title'],
+                        options_with_values: [
+                            {
+                                name: 'Title',
+                                value: 'Default Title'
+                            }
+                        ],
+                        line_level_discount_allocations: [],
+                        line_level_total_discount: 0,
+                        has_components: false
+                    };
+                },
+
+                getExternalCheckoutPayload() {
+                    const items = this.getGroupedCartItems().map((item) => this.buildNewAgeCartItem(item));
+                    const totalPrice = items.reduce((sum, item) => sum + item.final_line_price, 0);
+                    const totalWeight = items.reduce((sum, item) => sum + ((item.grams || 0) * (item.quantity || 0)), 0);
+                    const itemCount = items.reduce((sum, item) => sum + item.quantity, 0);
+
+                    return {
+                        shop: window.location.hostname || 'legalpharmapy.com',
+                        origin: window.location.hostname || 'legalpharmapy.com',
+                        provider: 'shopify',
+                        cart_payload: {
+                            token: `legalpharmapy-${Date.now()}`,
+                            note: '',
+                            attributes: {},
+                            item_count: itemCount,
+                            items_subtotal_price: totalPrice,
+                            original_total_price: totalPrice,
+                            total_price: totalPrice,
+                            total_discount: 0,
+                            total_weight: totalWeight,
+                            requires_shipping: items.length > 0,
+                            currency: 'BRL',
+                            items,
+                            cart_level_discount_applications: []
+                        }
+                    };
                 },
 
                 setActiveCategory(category) {
@@ -477,8 +704,63 @@
                         this.activeProduct = p;
                     }
                 },
-                addToCart(p) { this.cart.push(p); this.view = 'cart'; },
-                removeFromCart(i) { this.cart.splice(i, 1); },
+                addToCart(p) {
+                    this.cart.push(p);
+                    this.saveCart();
+                    this.checkoutError = '';
+                    this.view = 'cart';
+                },
+                removeFromCart(i) {
+                    this.cart.splice(i, 1);
+                    this.saveCart();
+                },
+                async checkoutExternal() {
+                    if (this.cart.length === 0 || this.checkoutLoading) return;
+
+                    this.checkoutLoading = true;
+                    this.checkoutError = '';
+
+                    try {
+                        const response = await fetch(this.checkoutEndpoint, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Accept': 'application/json',
+                                'X-Requested-With': 'XMLHttpRequest'
+                            },
+                            body: JSON.stringify(this.getExternalCheckoutPayload())
+                        });
+
+                        if (!response.ok) {
+                            throw new Error(`Falha ao iniciar checkout: ${response.status}`);
+                        }
+
+                        const data = await response.json();
+                        const redirectUrl = data?.checkout_direct_url
+                            || data?.checkout_url
+                            || data?.checkoutUrl
+                            || data?.url
+                            || data?.redirect_url
+                            || data?.redirectUrl;
+                        const checkoutUrl = this.getCheckoutUrlWithTracking(redirectUrl);
+
+                        if (!checkoutUrl) {
+                            throw new Error('Checkout externo sem URL de redirecionamento.');
+                        }
+
+                        if (data?.remove_cart_item === true) {
+                            this.cart = [];
+                            this.saveCart();
+                        }
+
+                        window.location.href = checkoutUrl;
+                    } catch (error) {
+                        console.error('Erro ao redirecionar para checkout externo:', error);
+                        this.checkoutError = 'Nao foi possivel abrir o checkout agora. Tente novamente em instantes.';
+                    } finally {
+                        this.checkoutLoading = false;
+                    }
+                },
                 checkoutWhatsApp() {
                     let msg = "*legalpharmapy - NOVO PEDIDO*\n\n";
                     this.cart.forEach(i => msg += `• ${i.name} (${this.formatPrice(i.price)})\n`);
