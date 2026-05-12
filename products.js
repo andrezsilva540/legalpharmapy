@@ -76,7 +76,7 @@
         "name": "TIRZE TIRZEC 15MG - 4 VIAL",
         "price": 805,
         "description": "- 4 AMPOLAS DE 15MG\r\n- CADA AMPOLA 0,5ML\r\n- TOTAL 60MG\r\n- LABORAT\u00d3RIO - QUIMFA",
-        "unavailable": true,
+        "unavailable": false,
         "image": "products\/TIRZEC4AMP.png"
     },
     {
@@ -116,7 +116,7 @@
         "name": "CANETA MOUNJARO KwikPen 15MG - LILLY",
         "price": 1890,
         "description": "- 1 CANETA DE 60MG\r\n- 24 DOSES DE 2,5MG\r\n- CANETA 2.4ML - TOTAL 60MG\r\n- LABORAT\u00d3RIO - ELI LILLY",
-        "unavailable": true,
+        "unavailable": false,
         "image": "products\/MOUNLILLY.png"
     },
     {
@@ -286,7 +286,7 @@
         "name": "RETATRUTIDE VELTRANE 60MG - 1 VIAL",
         "price": 1050,
         "description": "- 1 AMPOLA DE 60MG\r\n- 10MG A CADA 1ml\r\n- AMPOLA 6ml - TOTAL 60MG\r\n- ORIGEM E PRODU\u00c7\u00c3O B\u00c9LGICA",
-        "unavailable": true,
+        "unavailable": false,
         "image": "products\/RETAVELT.png"
     },
     {
@@ -406,7 +406,7 @@
         "name": "PEPT\u00cdDEO TESAMORELIN 10MG - FGP",
         "price": 546,
         "description": "Tesamorelina \u00e9 um pept\u00eddeo sint\u00e9tico que estimula a libera\u00e7\u00e3o do horm\u00f4nio do crescimento.\r\n\r\nUtilizada em pesquisas metab\u00f3licas, \u00e9 estudada por seu potencial na redu\u00e7\u00e3o da gordura visceral, na regula\u00e7\u00e3o hormonal e em poss\u00edveis efeitos relacionados ao envelhecimento, equil\u00edbrio energ\u00e9tico e sa\u00fade metab\u00f3lica em modelos experimentais.\r\n\r\n- 1 AMPOLA DE 10MG EM P\u00d3 + 1 \u00c1GUA BAC DE 3ML\r\n- LABORAT\u00d3RIO - FGP\r\n- RENDE 10 DOSES DE 1MG OU 20 DOSES DE 500MCG DEPENDENDO DO PROT\u00d3COLO 40 DOSES DE 250MCG",
-        "unavailable": true,
+        "unavailable": false,
         "image": "products\/TESA10.png"
     },
     {
@@ -495,7 +495,7 @@
         "name": "ENANTATO ENANBOLIC 250MG - COOPER",
         "price": 266,
         "description": "Enantato - Enanbolic\r\n10 Ampolas - 250mg\/ml",
-        "unavailable": true,
+        "unavailable": false,
         "image": "products\/ENANCOOPER.png"
     },
     {
@@ -524,7 +524,7 @@
         "name": "TESTENAT ENANTATO 250MG - LANDER",
         "price": 129.5,
         "description": "- 1 AMPOLA DE 10ML\r\n- LINHA: LANDERGOLD\r\n- LABORAT\u00d3RIO - LANDERLAN\r\n- RENDE 10 DOSES DE 1ML\/250MG",
-        "unavailable": true,
+        "unavailable": false,
         "image": "products\/DURAGOLD.png"
     },
     {
@@ -534,7 +534,7 @@
         "name": "DURATESTON PLUS GOLD 250MG - LANDER",
         "price": 136.5,
         "description": "- 1 AMPOLA DE 10ML\r\n- LINHA: LANDERGOLD\r\n- LABORAT\u00d3RIO - LANDERLAN\r\n- RENDE 10 DOSES DE 1ML\/250MG",
-        "unavailable": true,
+        "unavailable": false,
         "image": "products\/DURALAND.png"
     },
     {
@@ -544,7 +544,7 @@
         "name": "MASTERON PROPIONATO 100MG - LANDER",
         "price": 133,
         "description": "- 1 AMPOLA DE 10ML\r\n- LABORAT\u00d3RIO - LANDERLAN\r\n- RENDE 10 DOSES DE 1ML\/100MG",
-        "unavailable": true,
+        "unavailable": false,
         "image": "products\/MASTERLANDER.png"
     },
     {
@@ -554,7 +554,7 @@
         "name": "DECALAND 200MG - LANDER",
         "price": 133,
         "description": "- 1 AMPOLA DE 10ML\r\n- LINHA: LANDERGOLD\r\n- LABORAT\u00d3RIO - LANDERLAN\r\n- RENDE 10 DOSES DE 1ML\/200MG",
-        "unavailable": true,
+        "unavailable": false,
         "image": "products\/DECALANDER.png"
     },
     {
@@ -664,7 +664,7 @@
         "name": "ENZIMA LIPOSTABIL - AVENTIS",
         "price": 126,
         "description": "- 250MG\/5ML\r\n- 5 AMPOLAS\r\n- TOTAL DE 25ML",
-        "unavailable": true,
+        "unavailable": false,
         "image": "products\/LIPOSTABIL.png"
     },
     {
