@@ -521,7 +521,7 @@
         "name": "PEPT\u00cdDEO BPC-157 10MG - FGP",
         "price": 350,
         "description": "- 1 AMPOLA DE 10MG EM P\u00d3 + 1 \u00c1GUA BAC DE 3ML\r\n- LABORAT\u00d3RIO - FGP\r\n- RENDE 10 DOSES DE 1MG OU 20 DOSES DE 500MCG",
-        "unavailable": true,
+        "unavailable": false,
         "image": "products\/PEPBPC.png"
     },
     {
@@ -531,7 +531,7 @@
         "name": "PEPT\u00cdDEO TB-500 10MG - FGP",
         "price": 350,
         "description": "- 1 AMPOLA DE 10MG EM P\u00d3 + 1 \u00c1GUA BAC DE 3ML\r\n- LABORAT\u00d3RIO - FGP\r\n- RENDE 10 DOSES DE 1MG OU 20 DOSES DE 500MCG DEPENDENDO DO PROT\u00d3COLO 40 DOSES DE 250MCG",
-        "unavailable": true,
+        "unavailable": false,
         "image": "products\/PEPTB500.png"
     },
     {
